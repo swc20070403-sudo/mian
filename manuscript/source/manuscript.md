@@ -153,7 +153,7 @@ The cumulative cycle count does not enter selection; it is standardised separate
 
 Removing cumulative cycle count, RPT index and the two label-derived SOC quantities leaves 146 selectable features. In each fold, the Spearman rank correlation between each feature and SOH is computed on the training records only,
 
-$$\rho_j=\frac{\sum_i(r_{ij}-\bar r_j)(r_i^{y}-\bar r^{y})}{\sqrt{\sum_i(r_{ij}-\bar r_j)^2\sum_i(r_i^{y}-\bar r^{y})^2}}$$
+$$\rho_j=\frac{\sum_i(r_{ij}-\overline{r}_j)(r_i^{y}-\overline{r}^{y})}{\sqrt{\sum_i(r_{ij}-\overline{r}_j)^2\sum_i(r_i^{y}-\overline{r}^{y})^2}}$$
 
 {{EQ:4}}
 
@@ -289,9 +289,9 @@ Five further experiments probe the scope of the model. (i) Unseen cycling condit
 
 ## 3.6. Metrics and statistical tests
 
-The six condition records of an RPT share one capacity label and cannot be treated as independent samples. For cell $i$, RPT $r$ and initialisation $s$, the six condition predictions are first averaged to $\bar y_{irs}$; the RMSE of each cell over its RPTs is then averaged over seeds and cells:
+The six condition records of an RPT share one capacity label and cannot be treated as independent samples. For cell $i$, RPT $r$ and initialisation $s$, the six condition predictions are first averaged to $\overline{y}_{irs}$; the RMSE of each cell over its RPTs is then averaged over seeds and cells:
 
-$$e_{is}=\sqrt{\frac{1}{R_i}\sum_{r=1}^{R_i}\left(\bar y_{irs}-y_{ir}\right)^{2}},\qquad \mathrm{RMSE}=\frac{1}{NS}\sum_{i=1}^{N}\sum_{s=1}^{S}e_{is}$$
+$$e_{is}=\sqrt{\frac{1}{R_i}\sum_{r=1}^{R_i}\left(\overline{y}_{irs}-y_{ir}\right)^{2}},\qquad \mathrm{RMSE}=\frac{1}{NS}\sum_{i=1}^{N}\sum_{s=1}^{S}e_{is}$$
 
 {{EQ:14}}
 

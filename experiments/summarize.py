@@ -33,8 +33,9 @@ for m in ['R0', 'A2', 'A1', 'GBDT']:
 
 # conventional baselines (BASE files)
 d = load_data(LFP)
-if len(glob.glob('results/cv/BASE_f*.npz')) == 5:
-    keys = [k for k in np.load('results/cv/BASE_f0.npz').files if k != 'idx']
+BF = 'BASE' if len(glob.glob('results/cv/BASE_f*.npz')) == 5 else 'BASEL'
+if len(glob.glob(f'results/cv/{BF}_f*.npz')) == 5:
+    keys = [k for k in np.load(f'results/cv/{BF}_f0.npz').files if k != 'idx']
     groups = {}
     for k in keys:
         base = k.rsplit('_s', 1)[0] if k.startswith('RF_') else k
@@ -46,7 +47,7 @@ if len(glob.glob('results/cv/BASE_f*.npz')) == 5:
         for k in ks:
             pred = np.full(d['y'].size, np.nan)
             for f in range(5):
-                z = np.load(f'results/cv/BASE_f{f}.npz'); pred[z['idx']] = z[k]
+                z = np.load(f'results/cv/{BF}_f{f}.npz'); pred[z['idx']] = z[k]
             for c, v in cell_rmse(pred, d['y'], d['cell'], d['rpt']).items():
                 per.setdefault(c, []).append(v)
         cells = sorted(per); pc = np.array([np.mean(per[c]) for c in cells])

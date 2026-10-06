@@ -2,7 +2,14 @@
  "cv": {
   "R0": 1.4273,
   "A2": 1.4737,
-  "GBDT": 1.0281
+  "GBDT": 1.0281,
+  "SVR": 1.007,
+  "Ridge_full": 1.8787,
+  "Ridge_tau": 3.083,
+  "RF_tau": 3.0948,
+  "GBDT_tau": 2.8809,
+  "Ridge_notau": 2.5933,
+  "GBDT_notau": 1.6982
  },
  "logo": {
   "R0": 1.5597,

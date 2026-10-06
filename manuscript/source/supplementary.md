@@ -30,7 +30,7 @@ $$S^{(1)}=(V_1,\ldots,V_{30}),\quad S^{(2)}=(V_{31},\ldots,V_{40}),\quad S^{(3)}
 
 **Basic operators.** For a window $x$ of length $n$,
 
-$$\bar x=\frac{1}{n}\sum_{i=1}^{n}x_i,\quad \sigma(x)=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar x)^2},\quad \mathrm{RMS}(x)=\sqrt{\frac{1}{n}\sum_{i=1}^{n}x_i^2},\quad E(x)=\sum_{i=1}^{n}x_i^2$$
+$$\overline{x}=\frac{1}{n}\sum_{i=1}^{n}x_i,\quad \sigma(x)=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i-\overline{x})^2},\quad \mathrm{RMS}(x)=\sqrt{\frac{1}{n}\sum_{i=1}^{n}x_i^2},\quad E(x)=\sum_{i=1}^{n}x_i^2$$
 
 {{EQ:S2}}
 
@@ -42,7 +42,7 @@ The standard deviation uses the population form ($1/n$), except for the global v
 
 **Shape.** Bias-corrected Fisher–Pearson skewness and excess kurtosis are used, with $m_k$ the $k$-th central moment:
 
-$$\begin{aligned}&m_k=\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar x)^k,\qquad g_1=\frac{m_3}{m_2^{3/2}},\qquad g_2=\frac{m_4}{m_2^{2}}-3,\\&G_1=\frac{\sqrt{n(n-1)}}{n-2}g_1,\qquad G_2=\frac{n-1}{(n-2)(n-3)}[(n+1)g_2+6]\end{aligned}$$
+$$\begin{aligned}&m_k=\frac{1}{n}\sum_{i=1}^{n}(x_i-\overline{x})^k,\qquad g_1=\frac{m_3}{m_2^{3/2}},\qquad g_2=\frac{m_4}{m_2^{2}}-3,\\&G_1=\frac{\sqrt{n(n-1)}}{n-2}g_1,\qquad G_2=\frac{n-1}{(n-2)(n-3)}[(n+1)g_2+6]\end{aligned}$$
 
 {{EQ:S4}}
 
@@ -54,13 +54,13 @@ $$H(x)=-\frac{1}{\ln 16}\sum_{p_i>0}p_i\ln p_i$$
 
 **Linear trend.** A least-squares line is fitted against the sample index $t_i$:
 
-$$a=\frac{\sum_i(x_i-\bar x)(t_i-\bar t)}{\sum_i(t_i-\bar t)^2},\qquad b=\bar x-a\bar t,\qquad R^2=1-\frac{\sum_i(x_i-b-at_i)^2}{\sum_i(x_i-\bar x)^2}$$
+$$a=\frac{\sum_i(x_i-\overline{x})(t_i-\overline{t})}{\sum_i(t_i-\overline{t})^2},\qquad b=\overline{x}-a\overline{t},\qquad R^2=1-\frac{\sum_i(x_i-b-at_i)^2}{\sum_i(x_i-\overline{x})^2}$$
 
 {{EQ:S6}}
 
 **Zero crossings and total variation.** Zero crossings of a difference sequence are counted after removing exact zeros, giving $y$:
 
-$$Z(y)=\#\{i:y_iy_{i+1}<0\},\qquad \mathrm{TV}(x)=\sum_{i=1}^{n-1}|x_{i+1}-x_i|$$
+$$Z(y)=\text{\#}\{i:y_iy_{i+1}<0\},\qquad \mathrm{TV}(x)=\sum_{i=1}^{n-1}|x_{i+1}-x_i|$$
 
 {{EQ:S7}}
 
@@ -68,7 +68,7 @@ The 15 operators of Eqs. (S2)–(S7) applied to $S^{(1)}$, $S^{(2)}$ and $S^{(3)
 
 **Spectral features.** The demeaned sequence is Hann-windowed and transformed by a real fast Fourier transform ($N=101$, frequency in cycles per sample):
 
-$$\begin{aligned}&w_t=0.5-0.5\cos\left(\frac{2\pi t}{N-1}\right),\qquad x_t=(V_t-\bar V)\,w_t,\\&X_k=\sum_{t=0}^{N-1}x_t\,e^{-\mathrm{j}2\pi kt/N},\qquad P_k=|X_k|^2,\qquad f_k=\frac{k}{N}\end{aligned}$$
+$$\begin{aligned}&w_t=0.5-0.5\cos\left(\frac{2\pi t}{N-1}\right),\qquad x_t=(V_t-\overline{V})\,w_t,\\&X_k=\sum_{t=0}^{N-1}x_t\,e^{-\mathrm{j}2\pi kt/N},\qquad P_k=|X_k|^2,\qquad f_k=\frac{k}{N}\end{aligned}$$
 
 {{EQ:S8}}
 
@@ -98,13 +98,13 @@ Eqs. (S8)–(S12) yield 24 frequency and wavelet features (8 amplitudes, 4 band 
 
 **Nonlinear features.** Lagged autocorrelation ($\ell\in\{1,5,10\}$) and the three Hjorth parameters are
 
-$$\begin{aligned}&\mathbf a=(V_0,\ldots,V_{100-\ell}),\qquad \mathbf b=(V_{\ell},\ldots,V_{100}),\qquad \rho_{\ell}=\frac{\sum_i(a_i-\bar a)(b_i-\bar b)}{\sqrt{\sum_i(a_i-\bar a)^2\sum_i(b_i-\bar b)^2}},\\&\mathrm{Act}=\sigma^2(V),\qquad \mathrm{Mob}(V)=\sqrt{\frac{\sigma^2(d^{(1)})}{\sigma^2(V)}},\qquad \mathrm{Com}=\frac{\mathrm{Mob}(d^{(1)})}{\mathrm{Mob}(V)}\end{aligned}$$
+$$\begin{aligned}&\mathbf a=(V_0,\ldots,V_{100-\ell}),\qquad \mathbf b=(V_{\ell},\ldots,V_{100}),\qquad \rho_{\ell}=\frac{\sum_i(a_i-\overline{a})(b_i-\overline{b})}{\sqrt{\sum_i(a_i-\overline{a})^2\sum_i(b_i-\overline{b})^2}},\\&\mathrm{Act}=\sigma^2(V),\qquad \mathrm{Mob}(V)=\sqrt{\frac{\sigma^2(d^{(1)})}{\sigma^2(V)}},\qquad \mathrm{Com}=\frac{\mathrm{Mob}(d^{(1)})}{\mathrm{Mob}(V)}\end{aligned}$$
 
 {{EQ:S13}}
 
 Approximate and sample entropy use embedding dimension $m=2$ (and $m+1=3$), tolerance $r=0.2\sigma(V)$ and the Chebyshev distance; approximate entropy counts self-matches, whereas sample entropy counts only pairs $i\ne j$:
 
-$$\begin{aligned}&C_i^m(r)=\frac{\#\{j:\max_{0\le k<m}|V_{i+k}-V_{j+k}|\le r\}}{N-m+1},\qquad \Phi^m(r)=\frac{1}{N-m+1}\sum_i\ln C_i^m(r),\\&\mathrm{ApEn}=\Phi^2(r)-\Phi^3(r),\qquad \mathrm{SampEn}=-\ln\frac{A}{B}\end{aligned}$$
+$$\begin{aligned}&C_i^m(r)=\frac{\text{\#}\{j:\max_{0\le k<m}|V_{i+k}-V_{j+k}|\le r\}}{N-m+1},\qquad \Phi^m(r)=\frac{1}{N-m+1}\sum_i\ln C_i^m(r),\\&\mathrm{ApEn}=\Phi^2(r)-\Phi^3(r),\qquad \mathrm{SampEn}=-\ln\frac{A}{B}\end{aligned}$$
 
 {{EQ:S14}}
 
@@ -162,7 +162,7 @@ With the GBDT selected in Supplementary Note S3 as the backbone, networks with t
 
 The experiments of Section 4.6 were run with an independent re-implementation of the protocol written in Python (NumPy, scikit-learn 1.9 and PyTorch 2.14 on CPU, one thread per run), starting from the publisher's processed pulse files [31]. Cleaning reproduced the record counts exactly: 17,130 records in 2,855 groups before cleaning, 192 records removed at the 42nd RPT, and 16,938 records in 2,823 complete groups (SOH 72.34–100%) after cleaning. The 143 waveform features were implemented from the definitions in Supplementary Note S1; details not fixed by those definitions, such as the quantile levels of the global family, may differ from the original code. Feature selection was nonetheless similar: in fold 0 it selected 16 frequency and wavelet, 14 segment, 11 difference-dynamics, 6 global, 1 boundary and 1 nonlinear feature together with the DCIR, which ranked 13th; 44 features were selected in every fold and 57 in at least one. The split permutation used NumPy's default generator with seed 42, which reproduces the fold sizes but not necessarily the fold membership of the original runs. Architectures, loss, optimiser, scheduler, early stopping and seeds follow Sections 3.2–3.4 of the main text, with positional embeddings initialised from U(−0.02, 0.02).
 
-Under the original five-fold protocol the re-implementation gives R0 1.427, A2 1.474 and GBDT 1.028 pp (reported: 1.377, 1.500 and 1.022 pp). The waveform increment keeps its sign and significance (−0.046 pp, −0.070 to −0.023; *p* < 0.001; 42 of 64 cells), and cells 12 and 3 are again the best- and worst-estimated cells. Table S7 lists all re-implementation results.
+Under the original five-fold protocol the re-implementation gives R0 1.427, A2 1.474 and GBDT 1.028 pp (reported: 1.377, 1.500 and 1.022 pp). The waveform increment keeps its sign and significance (−0.046 pp, −0.070 to −0.023; *p* < 0.001; 42 of 64 cells), and cells 12 and 3 are again the best- and worst-estimated cells. Table S7 lists all re-implementation results. Among the conventional baselines, ridge regression, RBF-SVR and the *τ*-only and without-*τ* controls were re-run and agree with the original values (Table S5); random forest and GPR on the full input were not re-run because of their computational and memory cost.
 
 *NMC/graphite dataset.* The UConn-ILCC NMC dataset [31] records the same 100-s pulses at nine nominal SOCs; the three SOCs used for LFP (20%, 50% and 90%) were retained, giving six conditions per RPT, 8,016 records in 1,336 cell–RPT groups of 44 cells and SOH from 41.2% to 100%. Because NMC cells have a higher resistance, the voltage-step and range limits of Eq. (2) were relaxed to 0.3 and 0.8 V; no record was removed. The pipeline was otherwise unchanged. On these data the two neural models perform alike (R0 2.030, A2 2.026 pp; R0 − A2 = +0.004 pp, −0.042 to 0.047; *p* = 0.90), both clearly better than A1 (2.317 pp), and GBDT reaches 0.935 pp; GBDT is more accurate than the neural models in every SOH range.
 
@@ -252,26 +252,26 @@ TN: True-SOH strata are formed at the cell–RPT level after averaging the six c
 
 : Supplementary Table S5. Conventional regressors, information-source controls and reference models (SOH pp).
 
-|Model|Input|Reported|Re-implementation|
-|:----------------------------|:------------------------|-------:|-------:|
+|Model|Input|Reported|Re-implemented|
+|:--------------------------|:----------------------|--------:|------------:|
 | R0 (dual-branch) | Features + *τ* + ΔV | 1.377 | 1.427 |
 | A2 (backbone only) | Features + *τ* | 1.500 | 1.474 |
-| Ridge | Features + *τ* | n.r. | — |
+| Ridge | Features + *τ* | n.r. | 1.879 |
 | Random forest | Features + *τ* | n.r. | — |
 | GBDT | Features + *τ* | 1.022 | 1.028 |
-| RBF-SVR | Features + *τ* | 1.026 | — |
+| RBF-SVR | Features + *τ* | 1.026 | 1.007 |
 | GPR | Features + *τ* | n.r. | — |
-| Ridge | *τ* only | ≈3^a^ | — |
-| Random forest | *τ* only | ≈3^a^ | — |
-| GBDT | *τ* only | ≈3^a^ | — |
-| Ridge | Features without *τ* | n.r. | — |
+| Ridge | *τ* only | ≈3^a^ | 3.083 |
+| Random forest | *τ* only | ≈3^a^ | 3.095 |
+| GBDT | *τ* only | ≈3^a^ | 2.881 |
+| Ridge | Features without *τ* | n.r. | 2.593 |
 | Random forest | Features without *τ* | n.r. | — |
-| GBDT | Features without *τ* | 1.663 | — |
+| GBDT | Features without *τ* | 1.663 | 1.698 |
 | Nowacki et al. [28], reproduced | Raw ΔV | 1.628 | — |
 | GBDT + raw voltage (post hoc) | Features + *τ* + 101 voltages | no gain^b^ | — |
 | RBF-SVR + raw voltage (post hoc) | Features + *τ* + 101 voltages | no gain^b^ | — |
 
-TN: Cell-macro RMSE over the 64 test cells. "Reported" values are those of the original runs on which the main text is based; n.r., not given in the source draft (to be inserted from the original result files). "Re-implementation" values come from the CPU re-implementation of Supplementary Note S6 with the same grids (random forest averaged over seeds 0–2). ^a^ About 3 pp in the original runs. ^b^ No detectable gain over GBDT and RBF-SVR, respectively (Supplementary Note S5).
+TN: Cell-macro RMSE over the 64 test cells. "Reported" values are those of the original runs on which the main text is based; n.r., not given in the source draft (to be inserted from the original result files). "Re-implemented" values come from the CPU re-implementation of Supplementary Note S6 with the same grids (random forest averaged over seeds 0–2); —, not run in the re-implementation. ^a^ About 3 pp in the original runs. ^b^ No detectable gain over GBDT and RBF-SVR, respectively (Supplementary Note S5).
 
 : Supplementary Table S6. Sensitivity to the number of handcrafted features (SOH pp).
 

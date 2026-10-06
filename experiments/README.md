@@ -17,7 +17,7 @@ The processed pulse files come from the publisher's public repository
 | Leave-one-cycling-group-out | `experiments.py logo` | `results/logo/` |
 | NMC/Gr dataset | `experiments.py nmc` | `results/nmc/` |
 | Matched noise | `experiments.py noisy1`, `noisy2` | `results/noisy1/`, `results/noisy2/` |
-| Conventional regressors, RBF-SVR | `experiments.py base`, `svr` | `results/cv/BASE_*`, `SVR_*` |
+| Conventional regressors (ridge, τ-only and without-τ controls), RBF-SVR | `experiments.py baselight`, `svr` | `results/cv/BASEL_*`, `SVR_*` |
 | Cycle-count bias, test-only noise, pulse count, attribution, cost | `extra.py robust pulses attr cost` | `results/*.json`, `results/attribution.npz` |
 | Per-cell summary | `summarize.py` | `summary/per_cell_rmse.csv`, `summary/results_summary.json` |
 

@@ -152,6 +152,52 @@ def base_job(args):
     return path
 
 
+def base_light_job(args):
+    exp, dname, f = args
+    path = f'{OUT}/{exp}/BASEL_f{f}.npz'
+    if os.path.exists(path):
+        return path
+    from sklearn.linear_model import Ridge
+    from sklearn.ensemble import RandomForestRegressor, HistGradientBoostingRegressor
+    from core import load_data, cv_folds, Prep, cell_rmse
+    d = load_data(dname)
+    tr, va, te = cv_folds(d['cell'])[f]
+    cell = d['cell']
+    itr = np.nonzero(np.isin(cell, tr))[0]; iva = np.nonzero(np.isin(cell, va))[0]; ite = np.nonzero(np.isin(cell, te))[0]
+    pp = Prep(d, itr, K=50)
+    def X(idx, kind):
+        o = pp.transform(d, idx)
+        return {'full': np.c_[o['h'], o['tau']], 'tau': o['tau'][:, None], 'notau': o['h']}[kind]
+    ytr = d['y'][itr]
+    vr = lambda p: np.mean(list(cell_rmse(p, d['y'][iva], cell[iva], d['rpt'][iva]).values()))
+    out = {}
+    for kind in ['full', 'tau', 'notau']:
+        Xtr, Xva, Xte = X(itr, kind), X(iva, kind), X(ite, kind)
+        best = min(((vr(Ridge(alpha=a).fit(Xtr, ytr).predict(Xva)), a) for a in np.logspace(-4, 3, 8)))
+        out[f'Ridge_{kind}'] = Ridge(alpha=best[1]).fit(Xtr, ytr).predict(Xte)
+        if kind == 'tau':
+            cand = []
+            for mf, msl in itertools.product([0.33, 1.0], [1, 5, 20]):
+                m = RandomForestRegressor(300, max_features=mf, min_samples_leaf=msl, random_state=0, n_jobs=1).fit(Xtr, ytr)
+                cand.append((vr(m.predict(Xva)), mf, msl, m))
+            b = min(cand, key=lambda c: c[0])
+            out['RF_tau_s0'] = b[3].predict(Xte)
+            for sd in (1, 2):
+                out[f'RF_tau_s{sd}'] = RandomForestRegressor(300, max_features=b[1], min_samples_leaf=b[2],
+                                                            random_state=sd, n_jobs=1).fit(Xtr, ytr).predict(Xte)
+        if kind != 'full':
+            bestg = (np.inf, None)
+            for lr, leaves, msl, it in itertools.product([0.05, 0.1], [15, 31], [20, 100], [300, 1000]):
+                m = HistGradientBoostingRegressor(learning_rate=lr, max_leaf_nodes=leaves, min_samples_leaf=msl,
+                                                  max_iter=it, early_stopping=False, random_state=0).fit(Xtr, ytr)
+                v = vr(m.predict(Xva))
+                if v < bestg[0]: bestg = (v, m)
+            out[f'GBDT_{kind}'] = bestg[1].predict(Xte)
+    os.makedirs(f'{OUT}/{exp}', exist_ok=True)
+    np.savez_compressed(path, idx=ite, **out)
+    return path
+
+
 def run(jobs, fn, nproc):
     from multiprocessing import Pool
     t = time.time()
@@ -182,6 +228,8 @@ if __name__ == '__main__':
         jobs = [(exp, dn, 'cv', f, s, m, {}) for m in ['R0', 'A2'] for f in range(5) for s in seeds]
         run([(exp, dn, 'cv', f) for f in range(5)], gbdt_job, nproc)
         run(jobs, nn_job, nproc)
+    elif exp == 'baselight':
+        run([('cv', LFP, f) for f in range(5)], base_light_job, nproc)
     elif exp == 'base':
         run([('cv', LFP, f) for f in range(5)], base_job, nproc)
     elif exp == 'svr':
