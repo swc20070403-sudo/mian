@@ -13,8 +13,12 @@
 | `manuscript/format_review.md` | 参考的 14 篇相关顶刊论文及采用的格式规范 |
 | `manuscript/source/` | 生成 Word 的源文件（Markdown + `build.py`），改文字后可一键重建 |
 | `experiments/` | 补充实验的复现代码与结果汇总（见 `experiments/README.md`） |
+| `manuscript/zh/LFP_SOH_PulseFusion_Manuscript_ZH.docx`（及 .pdf） | **中文对照版正文**：修订后英文稿的逐句中译，章节、公式、表格和编号与英文版一一对应（图片仍为英文） |
+| `manuscript/zh/LFP_SOH_PulseFusion_Supplementary_ZH.docx`（及 .pdf） | 中文对照版补充材料 |
+| `manuscript/zh/论文修改说明.docx`（及 .pdf、.md） | **修改说明**：原中文稿 → 修订稿的逐节对照、图表编号对照、新增实验结果、删减内容、需要您确认的事项 |
+| `manuscript/zh/source/` | 中文版 Markdown 源文件与术语对照表 |
 
-重建 Word：`cd manuscript/source && python build.py manuscript.md out.docx && python build.py supplementary.md out_supp.docx --supp`（需要 pandoc 与 python-docx；图片路径为 `../figures`）。
+重建 Word：`cd manuscript/source && python build.py manuscript.md out.docx && python build.py supplementary.md out_supp.docx --supp`（需要 pandoc 与 python-docx；图片路径为 `../figures`）。中文版：`cd manuscript/zh/source && python build.py manuscript_zh.md out.docx --lang zh`（补充材料加 `--supp`）。
 
 ## 主要改动 / Change log
 
@@ -33,8 +37,12 @@
 
 ## 需要您补充或确认 / To do
 
+完整清单（8 项）见 `manuscript/zh/论文修改说明.docx` 第六部分，要点如下：
+
 - 作者、单位、通信作者邮箱、基金、CRediT、代码与数据仓库链接（文中以方括号标出）。
 - 图 2：上传版本为 2000 px 宽，投稿前请替换为原始高分辨率图。
-- 补充表 S5 中“Reported”一列：中文稿未给出的数值（Ridge、随机森林、GPR，以及不含 τ 的 Ridge/随机森林）标为 n.r.，请用您原始结果文件中的数值替换。“Re-implemented”一列为复现值（Ridge、RBF-SVR、仅 τ 与不含 τ 的对照，与原值吻合：仅 τ ≈2.9–3.1，不含 τ 的 GBDT 1.698 vs 原 1.663，SVR 1.007 vs 原 1.026）；全输入随机森林与 GPR 因内存与耗时未复现（标为 —）。
+- 补充表 S5 中“Reported”一列：中文稿未给出的数值（Ridge、随机森林、GPR，以及不含 τ 的 Ridge/随机森林）标为 n.r.，请用您原始结果文件中的数值替换。“Re-implemented”一列为复现值（Ridge、RBF-SVR、仅 τ 的对照、不含 τ 的 Ridge 与 GBDT；有原值可比的均与原值接近：仅 τ ≈2.9–3.1，不含 τ 的 GBDT 1.698 vs 原 1.663，SVR 1.007 vs 原 1.026）；全输入随机森林、GPR 和不含 τ 的随机森林因内存与耗时未复现（标为 —）。
 - NMC/石墨数据上未观察到波形增量（R0 2.030 vs A2 2.026 pp，GBDT 0.935 pp）。正文只在局限段用一句话交代，详细见补充说明 S6；是否保留请您决定。
 - 只在测试时加噪声（训练用干净数据）时，所有基于特征的模型误差都会大幅上升，已在补充说明 S6 中说明，正文局限段一句话带过。
+- 新增实验来自独立 CPU 复现：复现的波形增量（−0.046 pp，42/64）小于原文（−0.123 pp，58/64），与原代码的差异已在补充说明 S6 披露。可用原代码在原划分下重跑，或保留现在的写法。
+- 请确认新题名、关键词，以及“学习器依赖”和“单调约束为正则项”这两处表述。
