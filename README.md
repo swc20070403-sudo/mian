@@ -17,6 +17,7 @@
 | `manuscript/zh/LFP_SOH_PulseFusion_Supplementary_ZH.docx`（及 .pdf） | 中文对照版补充材料 |
 | `manuscript/zh/论文修改说明.docx`（及 .pdf、.md） | **修改说明**：原中文稿 → 修订稿的逐节对照、图表编号对照、新增实验结果、删减内容、需要您确认的事项 |
 | `manuscript/zh/source/` | 中文版 Markdown 源文件与术语对照表 |
+| `experiments/nmc_diagnosis/` | NMC 波形增量诊断（复现代码为何在 NMC 上无增量）：代码、结果与中文说明（见其中 `README.md`） |
 
 重建 Word：`cd manuscript/source && python build.py manuscript.md out.docx && python build.py supplementary.md out_supp.docx --supp`（需要 pandoc 与 python-docx；图片路径为 `../figures`）。中文版：`cd manuscript/zh/source && python build.py manuscript_zh.md out.docx --lang zh`（补充材料加 `--supp`）。
 

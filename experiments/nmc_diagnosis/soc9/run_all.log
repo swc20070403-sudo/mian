@@ -1,0 +1,26 @@
+27s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/GBDT_f0.npz hp=(0.1, 31, 100, 1000) val=0.815
+28s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/GBDT_f1.npz hp=(0.1, 31, 100, 1000) val=1.024
+47s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/GBDT_f3.npz hp=(0.1, 31, 100, 1000) val=1.017
+47s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/GBDT_f2.npz hp=(0.1, 31, 100, 1000) val=0.709
+67s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/GBDT_f4.npz hp=(0.1, 31, 100, 1000) val=0.740
+90s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/A2_f0_s0.npz t=11s ep=27 best=12 val=2.082
+167s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/R0_f1_s0.npz t=75s ep=24 best=9 val=2.132
+169s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/R0_f0_s0.npz t=90s ep=28 best=13 val=2.008
+176s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/A2_f1_s0.npz t=8s ep=27 best=12 val=2.199
+184s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/A2_f2_s0.npz t=7s ep=24 best=9 val=1.991
+232s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/R0_f2_s0.npz t=62s ep=19 best=4 val=2.102
+239s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/A2_f3_s0.npz t=6s ep=19 best=4 val=1.569
+265s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/R0_f3_s0.npz t=80s ep=26 best=11 val=1.532
+278s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/A2_f4_s0.npz t=11s ep=27 best=12 val=2.166
+339s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/R0_f4_s0.npz t=98s ep=28 best=13 val=2.284
+347s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/A2_f0_s1.npz t=7s ep=24 best=9 val=2.133
+418s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/R0_f0_s1.npz t=139s ep=43 best=28 val=2.068
+420s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/R0_f1_s1.npz t=72s ep=22 best=7 val=2.447
+426s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/A2_f1_s1.npz t=7s ep=23 best=8 val=2.271
+434s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/A2_f2_s1.npz t=7s ep=22 best=7 val=2.219
+496s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/R0_f2_s1.npz t=75s ep=22 best=7 val=2.162
+503s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/A2_f3_s1.npz t=6s ep=20 best=5 val=1.603
+505s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/R0_f3_s1.npz t=70s ep=24 best=9 val=1.734
+513s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/A2_f4_s1.npz t=7s ep=23 best=8 val=2.199
+581s /tmp/claude-0/-home-user-mian/1d84ac3c-62fa-58c0-8bb6-3fefff5673a1/scratchpad/nmcdiag/soc9/runs/R0_f4_s1.npz t=77s ep=22 best=7 val=2.289
+DONE
