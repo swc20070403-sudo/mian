@@ -19,7 +19,7 @@ The processed pulse files come from the publisher's public repository
 | Matched noise | `experiments.py noisy1`, `noisy2` | `results/noisy1/`, `results/noisy2/` |
 | Conventional regressors (ridge, τ-only and without-τ controls), RBF-SVR | `experiments.py baselight`, `svr` | `results/cv/BASEL_*`, `SVR_*` |
 | Cycle-count bias, test-only noise, pulse count, attribution, cost | `extra.py robust pulses attr cost` | `results/*.json`, `results/attribution.npz` |
-| Per-cell summary | `summarize.py` | `summary/per_cell_rmse.csv`, `summary/results_summary.json` |
+| Per-cell summary | `summarize.py` | `summary/per_cell_rmse.csv`, `summary/results_summary.json` (copied to `../复现结果汇总/`) |
 
 Model, loss, training and metrics live in `core.py`; the feature definitions follow Supplementary Note S1 (`features.py`); paired bootstrap and sign-flip tests are in `stats.py`.
 
@@ -35,4 +35,4 @@ Set `OMP_NUM_THREADS=1` when running several workers in parallel. Neural runs us
 | Matched noise 1 mV / 2 mV | 1.620 / 1.715 | 1.678 / 1.760 | 1.372 / 1.424 |
 | NMC/Gr five-fold | 2.030 | 2.026 | 0.935 |
 
-`summary/results_summary.json` holds the full set.
+`../复现结果汇总/results_summary.json` holds the full set.

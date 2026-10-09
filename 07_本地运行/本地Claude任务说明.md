@@ -61,4 +61,4 @@
 5. **重画的补充图 S3**（PNG）。
 6. **第二节第 2 项的回答**（文字说明即可）。
 
-**发回方式**：上传到 GitHub 仓库 `swc20070403-sudo/mian` 的 `results_from_local/` 文件夹（分支 `claude/paper-english-translation-format-3g5yrs`），或直接在对话里把文件发给云端 Claude。
+**发回方式**：上传到 GitHub 仓库 `swc20070403-sudo/mian` 的 `07_本地运行/结果回传/` 文件夹（分支 `claude/paper-english-translation-format-3g5yrs`），或直接在对话里把文件发给云端 Claude。

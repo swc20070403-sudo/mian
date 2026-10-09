@@ -97,7 +97,7 @@ CPU 复现代码在 NMC/石墨数据上得到 R0 2.030、A2 2.026 pp，R0 − A2
     - (b) GBDT 换不同输入的结果；
     - (c) NMC 神经网络各变体的结果。
 - 每折的预测文件（`*.npz`）和 9-SOC 数据集（24 MB）因体积较大没有放进仓库，可以用脚本重新生成。
-- 脚本运行时的工作目录是会话临时目录 `.../scratchpad/work`，内容对应本仓库的 `experiments/`，另外还需要：
+- 脚本运行时的工作目录是会话临时目录 `.../scratchpad/work`，内容对应本仓库的 `06_实验代码/复现代码/`，另外还需要：
   - `prep.py` 生成的 `data_UConn-ILCC-{LFP,NMC}.npz`；
   - `experiments.py` 生成的 `results/`。
 

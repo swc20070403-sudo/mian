@@ -73,7 +73,7 @@ tmp_md = out + '.tmp.md'
 open(tmp_md, 'w').write(md)
 raw = out + '.raw.docx'
 subprocess.run(['pandoc', tmp_md, '-f', 'markdown+superscript+subscript+tex_math_dollars+pipe_tables+fenced_divs',
-                '-t', 'docx', '-o', raw, '--resource-path', os.path.join(HERE, '..')], check=True)
+                '-t', 'docx', '-o', raw, '--resource-path', os.path.join(HERE, '..', '..')], check=True)
 
 # ----------------------------------------------------------------------------- 2. post-processing
 doc = Document(raw)
