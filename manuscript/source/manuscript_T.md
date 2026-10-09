@@ -101,7 +101,7 @@ Five outer test folds were built with split seed 42: the 64 cell identifiers wer
 | Excluded inputs | Coulomb-counted SOC and its deviation (derived from reference capacity); other records of the same RPT; past capacities; cell identity |
 | Validation | Five cell-disjoint outer folds; initialisation seeds 0, 1, 2 |
 | Encoder matrix | 5 waveform × 3 backbone encoders × 5 folds × 3 seeds = 225 trainings |
-| Further experiments | 19 neural configurations × 15 = 285 trainings; 30 reproduced reference models; conventional regressors (Section 3.5) |
+| Further experiments | 19 neural configurations × 15 = 285 trainings; 30 reproduced reference models (Section 3.5) |
 | Primary metric | Cell-macro RMSE after averaging the six condition predictions of each RPT |
 
 ## 2.3. Handcrafted backbone inputs
@@ -261,21 +261,13 @@ All networks use AdamW (learning rate 10^−3^, weight decay 10^−4^), batch si
 
 Branch ablations test the necessity of each branch (Supplementary Table S3). A2 keeps only the backbone (with $\tau$ and the monotonicity penalty) and feeds its 32-dimensional embedding to a 32→32→16→1 head (7,265 parameters); it is the direct reference for the waveform increment. A1 keeps only the PatchTST branch and concatenates the DCIR and $\tau$ directly to a 34→32→16→1 head (12,481 parameters). Factor ablations remove the penalty ($\lambda=0$, A3) and additionally remove $\tau$ (A4, 50-dimensional backbone input). Patch parameters are compared on a 2 × 2 grid: P1 (5, 2), P2 (5, 4), P3 (9, 2) and R0 (9, 4). Adaptation ablations revert one change of Section 3.3 at a time: D1 uses a flatten head, D2 adds RevIN with learnable affine parameters before patching, and D3 uses the raw voltage instead of $\Delta v$ (keeping position-wise standardisation). Finally, $K$ is varied over {10, 20, 30, 50, 75, 100, 144}, where 144 is the number of rankable candidates.
 
-### 3.5.2. Conventional regressors and information-source controls
-
-To test whether the backbone must be neural, five conventional regressors are trained on exactly the 51-dimensional input of A2: ridge regression, random forest, a histogram gradient-boosting decision tree (GBDT; scikit-learn, the same algorithm family as LightGBM), support vector regression with a radial basis function kernel (RBF-SVR) and Gaussian process regression (GPR). Hyperparameters are chosen on the validation cells from predefined grids (Supplementary Note S3) and are not refitted on training plus validation cells. To separate information sources, ridge, random forest and GBDT are also trained on $\tau$ alone and on the 50 features without $\tau$.
-
-### 3.5.3. Reproduction of a published pulse model
+### 3.5.2. Reproduction of a published pulse model
 
 The raw-pulse model of Nowacki et al. [28] is reproduced with the defaults of the public code under the present split and metric: the input is the 101-point $\Delta v$, inputs and targets are standardised with training statistics, and an MLP with five hidden layers of 100 tanh units is trained with Adam (learning rate 0.0015, batch 50, at most 500 epochs, early stopping on training loss with patience 5). One model per pulse direction covers all SOCs, and only the SOH output of the original multi-output model is kept (30 models in total).
 
-### 3.5.4. Waveform increment over a strong backbone
+### 3.5.3. Generalisation, robustness and deployment experiments
 
-Because the increment may depend on backbone strength, the GBDT selected in Section 3.5.2 is used as a backbone and networks learn its residuals. Training-cell residuals come from four-fold cell-disjoint out-of-fold predictions, so that they are not shrunk by in-sample fitting; validation and test residuals use a GBDT fitted on all training cells. The residual learners G+R0, G+A2 and G+A1 share the structures and training of R0, A2 and A1, with the residual standardised as the target, and the final prediction is the sum of the GBDT and residual predictions. (G+R0) − (G+A2) is thus the waveform increment over the GBDT backbone. As a post hoc addition, the 101 standardised voltages were also appended directly to the GBDT and SVR inputs and re-tuned.
-
-### 3.5.5. Generalisation, robustness and deployment experiments
-
-Five further experiments probe the scope of the model. (i) Unseen cycling conditions: each of the 11 cycling groups is held out in turn (leave-one-group-out), with validation cells drawn from the remaining groups. (ii) Independent chemistry: the UConn-ILCC NMC/Gr dataset [31] (44 cells, 11 cycling conditions) uses the same 100-s pulse protocol; the three nominal SOCs 20%, 50% and 90% are used for parity, giving 8,016 records in 1,336 cell–RPT groups (SOH 41.2–100%), and the identical pipeline of the original implementation is applied with five cell-disjoint folds (seed 42); because the DCIR enters none of the 50 selected features on these data, it is added to the input of A1 separately, as its definition requires. Only the voltage-step and range limits of Eq. (2) are relaxed to 0.3 V and 0.8 V for the higher-resistance NMC cells, which removes no record. (iii) Robustness: the cycle count of the test cells is biased by ±10% with the trained models fixed, and zero-mean Gaussian noise with σ~noise~ = 1 or 2 mV is added to all voltages before feature extraction, with every model retrained on the noisy data (matched sensor noise). (iv) The number of pulses averaged per RPT is varied from one to six over all condition combinations. (v) Integrated gradients [50] attribute R0's prediction to the waveform samples, and parameters, floating-point operations (FLOPs) and single-thread CPU latency quantify deployment cost. Except for (ii), these experiments were run with an independent CPU re-implementation of the protocol. Under the original five-fold split, the re-implementation gives RMSEs of 1.427, 1.474 and 1.028 pp for R0, A2 and GBDT (versus 1.377, 1.500 and 1.022 pp), and every comparison in Section 4.6 is made within the re-implementation (Supplementary Note S6).
+Five further experiments probe the scope of the model. (i) Unseen cycling conditions: each of the 11 cycling groups is held out in turn (leave-one-group-out), with validation cells drawn from the remaining groups. (ii) Independent chemistry: the UConn-ILCC NMC/Gr dataset [31] (44 cells, 11 cycling conditions) uses the same 100-s pulse protocol; the three nominal SOCs 20%, 50% and 90% are used for parity, giving 8,016 records in 1,336 cell–RPT groups (SOH 41.2–100%), and the identical pipeline of the original implementation is applied with five cell-disjoint folds (seed 42); because the DCIR enters none of the 50 selected features on these data, it is added to the input of A1 separately, as its definition requires. Only the voltage-step and range limits of Eq. (2) are relaxed to 0.3 V and 0.8 V for the higher-resistance NMC cells, which removes no record. (iii) Robustness: the cycle count of the test cells is biased by ±10% with the trained models fixed, and zero-mean Gaussian noise with σ~noise~ = 1 or 2 mV is added to all voltages before feature extraction, with every model retrained on the noisy data (matched sensor noise). (iv) The number of pulses averaged per RPT is varied from one to six over all condition combinations. (v) Integrated gradients [50] attribute R0's prediction to the waveform samples, and parameters, floating-point operations (FLOPs) and single-thread CPU latency quantify deployment cost. Except for (ii), these experiments were run with an independent CPU re-implementation of the protocol. Under the original five-fold split, the re-implementation gives RMSEs of 1.427 and 1.474 pp for R0 and A2 (versus 1.377 and 1.500 pp), and every comparison in Section 4.6 is made within the re-implementation (Supplementary Note S4).
 
 ## 3.6. Metrics and statistical tests
 
@@ -285,7 +277,7 @@ $$e_{is}=\sqrt{\frac{1}{R_i}\sum_{r=1}^{R_i}\left(\overline{y}_{irs}-y_{ir}\righ
 
 {{EQ:14}}
 
-where $R_i$ is the number of RPTs of cell $i$, $N=64$ and $S=3$. The mean absolute error (MAE) is aggregated in the same way, and errors are expressed in SOH percentage points (pp). Uncertainty is estimated by 5,000 fold-stratified cell bootstrap resamples that preserve the pairing of cells between models. Paired differences are defined as ΔRMSE = RMSE~candidate~ − RMSE~reference~, so negative values favour the candidate, and *p* values come from 5,000 two-sided paired sign-flip randomisations. Holm correction is applied within nine prespecified test families at α = 0.05 (Supplementary Note S4); stratified, bias, marginal and post hoc analyses are descriptive. Intervals are conditional on the fixed split and trained models.
+where $R_i$ is the number of RPTs of cell $i$, $N=64$ and $S=3$. The mean absolute error (MAE) is aggregated in the same way, and errors are expressed in SOH percentage points (pp). Uncertainty is estimated by 5,000 fold-stratified cell bootstrap resamples that preserve the pairing of cells between models. Paired differences are defined as ΔRMSE = RMSE~candidate~ − RMSE~reference~, so negative values favour the candidate, and *p* values come from 5,000 two-sided paired sign-flip randomisations. Holm correction is applied within seven prespecified test families at α = 0.05 (Supplementary Note S3); stratified, bias, marginal and post hoc analyses are descriptive. Intervals are conditional on the fixed split and trained models.
 
 # 4. Results and discussion
 
@@ -363,35 +355,29 @@ Binned bias analysis shows that the increment partly corrects a shrinkage bias o
 
 ![**Fig. 5.** Bias correction by the waveform complement and its distribution across conditions and cells. (a) Top: mean bias (prediction minus truth) in 2-pp bins of measured SOH (bins below 78% merged) for A2 (grey) and R0 (blue); the shading marks the corrected bias. Bottom: R0 − A2 prediction change at the 2,823 cell–RPT points (blue, closer to the measurement; red, farther) with the least-squares fit and its 95% bootstrap band. Predictions are averaged over seeds and conditions. (b) Left: per-cell R0 − A2 RMSE difference for the six conditions and all records (cells ordered by cycling group; colours saturate beyond ±0.3 pp). Right: cell-macro mean difference per row; all 95% intervals exclude zero.](figures/fig5_bias.png){width=6.5in}
 
-## 4.4. Learner dependence and comparison with reference methods
+## 4.4. Comparison with a published pulse model
 
-The comparison with reference methods delimits where the dual-branch design helps (Table 7; all results in Supplementary Table S5). The reproduced raw-pulse model of Nowacki et al. [28] reaches 1.628 pp, and R0 is 0.251 pp lower (Holm *p* = 0.019); since that model uses only the raw pulse without $\tau$, the gap cannot be attributed to the dual-branch structure alone. On the A2 input, GBDT and RBF-SVR reach 1.022 and 1.026 pp. A2 and GBDT share the same input yet differ by about 0.48 pp, so the backbone learner matters on these data. Models using $\tau$ alone err by about 3 pp and GBDT without $\tau$ reaches 1.663 pp, so the cycle record and the pulse features both contribute.
+The reproduced raw-pulse model of Nowacki et al. [28] reaches 1.628 pp, and R0 is 0.251 pp lower (Holm *p* = 0.019) in 47 of 64 cells (Table 7). Because that model uses only the raw pulse without $\tau$, the gap reflects both the dual-branch structure and the cycle record; within the present design, the contribution of the waveform branch is isolated by the R0 − A2 comparison of Section 4.2.
 
-: Inputs and cell-macro errors of representative methods (SOH pp).
+: Inputs and cell-macro errors of the reference methods (SOH pp).
 
 | Model | Input | RMSE | 95% CI | ΔRMSE vs. A2 | ΔRMSE vs. R0 | Holm *p*^a^ | Cells better than R0 |
 |:----------------|:-------------|------:|:----------|--------:|--------:|------:|--------:|
 | R0 (this work) | Features + *τ* + ΔV | 1.377 | 1.247–1.513 | −0.123 | — | — | — |
 | A2 (backbone only) | Features + *τ* | 1.500 | 1.365–1.637 | — | +0.123 | <0.001 | 6/64 |
 | Nowacki et al. [28], reproduced | Raw ΔV | 1.628 | 1.454–1.820 | +0.128 | +0.251 | 0.019 | 17/64 |
-| GBDT | Features + *τ* | 1.022 | 0.897–1.160 | −0.478 | −0.355 | 0.006 | 58/64 |
-| RBF-SVR | Features + *τ* | 1.026 | 0.915–1.146 | −0.474 | −0.351 | 0.006 | 57/64 |
 
-TN: ^a^ Versus R0. R0 versus A2 belongs to the prespecified family of Table 5; the other comparisons belong to the 30-comparison extended family (Supplementary Note S4).
-
-The waveform increment does not carry over to the GBDT backbone (Fig. 6). Whereas the neural backbone gains 0.123 pp in 58 of 64 cells, (G+R0) − (G+A2) is only −0.008 pp with 36 of 64 cells improved (Holm *p* = 0.35); none of the three residual learners improves GBDT significantly, and appending the raw waveform to GBDT gives no gain either (Supplementary Note S5). This pattern is consistent with the waveform branch recovering information that the neural backbone leaves unexploited in the handcrafted features, which a tree ensemble already extracts. The practical rule is therefore that the waveform complement should be added when a neural handcrafted backbone is used, for example where end-to-end differentiability is needed for derivative constraints, while a well-tuned tree ensemble can rely on the handcrafted features.
-
-![**Fig. 6.** Dependence of the waveform increment on the backbone learner. Paired change in cell RMSE after adding the waveform (negative = lower error) for the 64 test cells. Top: neural backbone, R0 − A2. Bottom: GBDT backbone with the waveform added through residual networks, (G+R0) − (G+A2). Circles, cells; violins, distributions; boxes, interquartile ranges with medians; diamonds, means. Annotations give the mean difference, improved cells and Holm-adjusted *p*.](figures/fig6_learner.png){width=6.5in}
+TN: ^a^ Versus R0. R0 versus A2 belongs to the prespecified family of Table 5; the comparisons with the reproduced model belong to the extended family of Supplementary Note S3.
 
 ## 4.5. Contribution of design factors
 
 ### 4.5.1. Cumulative cycle information and monotonicity penalty
 
-Among the ablated factors, removing the cycle count increases the error most (Table 5, Fig. 7a–c). Without the monotonicity penalty in either model, A3 (with $\tau$) is 0.578 pp below A4 (without $\tau$; reduction 0.421–0.731; Holm *p* < 0.001) in 52 of 64 cells, i.e. removing $\tau$ raises the error by about 41%. Together with the large error of $\tau$-only models (Section 4.4), the cycle record is an important but not self-sufficient input.
+Among the ablated factors, removing the cycle count increases the error most (Table 5, Fig. 6a–c). Without the monotonicity penalty in either model, A3 (with $\tau$) is 0.578 pp below A4 (without $\tau$; reduction 0.421–0.731; Holm *p* < 0.001) in 52 of 64 cells, i.e. removing $\tau$ raises the error by about 41%. The cycle record is therefore an important input.
 
-The soft monotonicity penalty yields a small accuracy gain (Fig. 7d–f): R0 is 0.028 pp below A3 (reduction 0.018–0.038; Holm *p* < 0.001) in 46 of 64 cells. The share of positive partial derivatives with respect to $\tau$ (5.39% for A3, 5.61% for R0) and of rising predictions between adjacent RPTs of the same cell and condition (26.88% and 27.03%) remain essentially unchanged, so the penalty acts as a regulariser rather than as a guarantee of monotone trajectories.
+The soft monotonicity penalty yields a small accuracy gain (Fig. 6d–f): R0 is 0.028 pp below A3 (reduction 0.018–0.038; Holm *p* < 0.001) in 46 of 64 cells. The share of positive partial derivatives with respect to $\tau$ (5.39% for A3, 5.61% for R0) and of rising predictions between adjacent RPTs of the same cell and condition (26.88% and 27.03%) remain essentially unchanged, so the penalty acts as a regulariser rather than as a guarantee of monotone trajectories.
 
-![**Fig. 7.** Effects of cumulative cycle information and the monotonicity penalty. Top row: A4 (no cycle input) versus A3 (cycle input), both without the penalty. Bottom row: A3 (no penalty) versus R0 (penalty). (a, d) RMSE; (b, e) MAE; (c, f) rate of rising predictions between adjacent RPTs. Error distributions contain the 64 test cells (seed-averaged); rise rates are computed within cell, nominal SOC and direction for the 15 runs. Violins are kernel densities limited to the observed range; points are observations and diamonds means. Rows use different y-axis ranges.](figures/fig7_cycle_mono.png){width=6.5in}
+![**Fig. 6.** Effects of cumulative cycle information and the monotonicity penalty. Top row: A4 (no cycle input) versus A3 (cycle input), both without the penalty. Bottom row: A3 (no penalty) versus R0 (penalty). (a, d) RMSE; (b, e) MAE; (c, f) rate of rising predictions between adjacent RPTs. Error distributions contain the 64 test cells (seed-averaged); rise rates are computed within cell, nominal SOC and direction for the 15 runs. Violins are kernel densities limited to the observed range; points are observations and diamonds means. Rows use different y-axis ranges.](figures/fig7_cycle_mono.png){width=6.5in}
 
 ### 4.5.2. Design of the waveform branch
 
@@ -413,49 +399,49 @@ TN: ΔRMSE is the configuration minus R0; positive values mean the corresponding
 
 ### 4.5.3. Number of handcrafted features
 
-Within the present candidate set, $K=50$ is supported (Supplementary Table S6, Fig. S2). $K$ = 10, 20 and 30 raise RMSE by 0.139, 0.122 and 0.091 pp (Holm *p* = 0.001), $K$ = 75 and 100 are slightly worse (+0.037 and +0.041 pp; Holm *p* = 0.002), and $K=144$ is indistinguishable from $K=50$ (−0.002 pp, −0.019 to 0.015; Holm *p* = 0.838) while requiring 31.6% more parameters. $K=50$ is therefore a balanced choice between accuracy and input size.
+Within the present candidate set, $K=50$ is supported (Supplementary Table S5, Fig. S2). $K$ = 10, 20 and 30 raise RMSE by 0.139, 0.122 and 0.091 pp (Holm *p* = 0.001), $K$ = 75 and 100 are slightly worse (+0.037 and +0.041 pp; Holm *p* = 0.002), and $K=144$ is indistinguishable from $K=50$ (−0.002 pp, −0.019 to 0.015; Holm *p* = 0.838) while requiring 31.6% more parameters. $K=50$ is therefore a balanced choice between accuracy and input size.
 
 ## 4.6. Generalisation, robustness and deployment
 
-Except for the main NMC/graphite results, which come from the original implementation, the experiments in this section use the CPU re-implementation of Section 3.5.5, which reproduces the cleaning exactly and the reported errors closely, including the sign and significance of the waveform increment (R0 − A2 = −0.046 pp, −0.070 to −0.023; *p* < 0.001; 42 of 64 cells) and the identity of the best- and worst-estimated cells (cells 12 and 3). All comparisons below are made within this implementation (Table 9, Fig. 8).
+Except for the main NMC/graphite results, which come from the original implementation, the experiments in this section use the CPU re-implementation of Section 3.5.3, which reproduces the cleaning exactly and the reported errors closely, including the sign and significance of the waveform increment (R0 − A2 = −0.046 pp, −0.070 to −0.023; *p* < 0.001; 42 of 64 cells) and the identity of the best- and worst-estimated cells (cells 12 and 3). All comparisons below are made within this implementation (Table 9, Fig. 7).
 
-*Unseen cycling conditions.* When each cycling group is held out entirely, the error of the neural models rises only moderately (R0 from 1.427 to 1.560 pp, +9.3%; A2 +8.2%), whereas that of GBDT rises sharply (from 1.028 to 1.401 pp, +36.2%), so the advantage of GBDT over R0 shrinks from 0.40 to 0.16 pp (Fig. 8a). For group 3, the condition hardest to extrapolate, R0 is 0.59 pp more accurate than GBDT. The waveform increment persists for unseen conditions (R0 − A2 = −0.035 pp, −0.053 to −0.015; *p* = 0.008; 39 of 64 cells), with lower group-mean errors in seven of the 11 held-out groups.
+*Unseen cycling conditions.* When each cycling group is held out entirely, the error of the neural models rises only moderately (R0 from 1.427 to 1.560 pp, +9.3%; A2 +8.2%) (Fig. 6a). The waveform increment persists for unseen conditions (R0 − A2 = −0.035 pp, −0.053 to −0.015; *p* = 0.008; 39 of 64 cells), with lower group-mean errors in seven of the 11 held-out groups.
 
-*Independent chemistry.* On the NMC/graphite dataset (original implementation, five folds × three seeds), R0 reaches a cell-macro RMSE of 1.968 pp (95% CI 1.728–2.236) against 2.132 pp for A2: R0 − A2 = −0.163 pp (Holm-adjusted *p* = 0.0004), with 39 of 44 cells improved and a 7.6% error reduction, close to the 8.2% on LFP; the difference is negative in every outer fold and every initialisation seed, and A1, without the handcrafted branch, reaches 2.468 pp. The waveform increment is therefore reproduced on a second electrode chemistry. As on LFP, GBDT is more accurate on these data (0.965 pp, better in 43 of 44 cells), with a larger gap that arises mainly from the shrinkage of the neural models at both ends of the SOH range: below 60% SOH, R0 overestimates by 3.3 pp on average (GBDT 1.0 pp), and at or above 95% SOH it underestimates by 1.75 pp; the waveform branch also reduces the low-SOH overestimation (A2 4.1 pp). A GBDT using only $\tau$ errs by 8.8 pp, whereas one using only the pulse features without $\tau$ reaches 1.28 pp, so the SOH information on NMC comes mainly from the pulse itself.
+*Independent chemistry.* On the NMC/graphite dataset (original implementation, five folds × three seeds), R0 reaches a cell-macro RMSE of 1.968 pp (95% CI 1.728–2.236) against 2.132 pp for A2: R0 − A2 = −0.163 pp (Holm-adjusted *p* = 0.0004), with 39 of 44 cells improved and a 7.6% error reduction, close to the 8.2% on LFP; the difference is negative in every outer fold and every initialisation seed, and A1, without the handcrafted branch, reaches 2.468 pp. The waveform increment is therefore reproduced on a second electrode chemistry. As on LFP, the waveform branch reduces the low-SOH overestimation: below 60% SOH, the mean bias falls from 4.1 pp for A2 to 3.3 pp for R0.
 
-*Information added by the waveform branch.* The open-circuit voltage of NMC is sloped, so capacity fade shifts the actual SOC at which pulses are applied and the pre-pulse voltage itself tracks SOH: its absolute Spearman correlation with SOH averages 0.93 over the six conditions, against 0.36 for LFP. The waveform branch receives the first-sample-referenced voltage ΔV, which excludes this absolute level, and supplies the dynamic response during the pulse. When the handcrafted features include absolute-level quantities such as the pre-pulse voltage or voltage quantiles, the two sources partly overlap: in the re-implementation, the NMC waveform increment vanishes when such features enter the backbone (+0.004 pp) and returns to −0.158 pp (−0.205 to −0.112; *p* < 0.001; 36 of 44 cells) when they are removed from the candidates, matching the original implementation (Supplementary Note S6). The waveform branch thus contributes dynamic information beyond the absolute voltage level rather than repeating what the handcrafted features already encode.
+*Information added by the waveform branch.* The open-circuit voltage of NMC is sloped, so capacity fade shifts the actual SOC at which pulses are applied and the pre-pulse voltage itself tracks SOH: its absolute Spearman correlation with SOH averages 0.93 over the six conditions, against 0.36 for LFP. The waveform branch receives the first-sample-referenced voltage ΔV, which excludes this absolute level, and supplies the dynamic response during the pulse. When the handcrafted features include absolute-level quantities such as the pre-pulse voltage or voltage quantiles, the two sources partly overlap: in the re-implementation, the NMC waveform increment vanishes when such features enter the backbone (+0.004 pp) and returns to −0.158 pp (−0.205 to −0.112; *p* < 0.001; 36 of 44 cells) when they are removed from the candidates, matching the original implementation (Supplementary Note S4). The waveform branch thus contributes dynamic information beyond the absolute voltage level rather than repeating what the handcrafted features already encode.
 
-*Cycle-count errors and sensor noise.* A systematic ±10% error in the cycle count raises R0's error by only 1.5–3.5% (1.449 and 1.477 pp), compared with 8.6–14.4% for GBDT (1.117 and 1.176 pp), and leaves the waveform increment intact (−0.048 and −0.041 pp; *p* ≤ 0.002) (Fig. 8b). With matched sensor noise in training and test data, accuracy degrades gracefully: at σ~noise~ = 1 and 2 mV, R0 reaches 1.620 and 1.715 pp (+13.5% and +20.2%), against +33.5% and +38.5% for GBDT (1.372 and 1.424 pp), and the waveform increment is maintained (−0.058 pp in 50 of 64 cells and −0.045 pp in 46 of 64 cells; *p* ≤ 0.002).
+*Cycle-count errors and sensor noise.* A systematic ±10% error in the cycle count raises R0's error by only 1.5–3.5% (1.449 and 1.477 pp), and leaves the waveform increment intact (−0.048 and −0.041 pp; *p* ≤ 0.002) (Fig. 7b). With matched sensor noise in training and test data, accuracy degrades gracefully: at σ~noise~ = 1 and 2 mV, R0 reaches 1.620 and 1.715 pp (+13.5% and +20.2%), and the waveform increment is maintained (−0.058 pp in 50 of 64 cells and −0.045 pp in 46 of 64 cells; *p* ≤ 0.002).
 
-*Number of pulses.* With a single pulse per RPT, R0 reaches 1.549 pp on average over the six conditions (1.490–1.582 pp); two and three pulses give 1.477 and 1.453 pp, against 1.427 pp for all six (Fig. 8c), and R0 stays below A2 for every pulse count. The three charge pulses alone reach 1.432 pp, within 0.005 pp of the full protocol, so the diagnostic time can be halved, and the pulses can be applied during charging as proposed for vehicles [16].
+*Number of pulses.* With a single pulse per RPT, R0 reaches 1.549 pp on average over the six conditions (1.490–1.582 pp); two and three pulses give 1.477 and 1.453 pp, against 1.427 pp for all six (Fig. 7c), and R0 stays below A2 for every pulse count. The three charge pulses alone reach 1.432 pp, within 0.005 pp of the full protocol, so the diagnostic time can be halved, and the pulses can be applied during charging as proposed for vehicles [16].
 
-*Attribution.* Integrated gradients spread R0's waveform attribution almost evenly over the response: the mean absolute attribution per sample is 0.0132, 0.0138 and 0.0135 pp in the C/5, 1C and rest segments, with the same profile for all six conditions (Fig. 8d). The complement therefore draws on the shape of the whole transient rather than on one segment that a single handcrafted descriptor could isolate, in line with its intended role of capturing inter-segment information.
+*Attribution.* Integrated gradients spread R0's waveform attribution almost evenly over the response: the mean absolute attribution per sample is 0.0132, 0.0138 and 0.0135 pp in the C/5, 1C and rest segments, with the same profile for all six conditions (Fig. 7d). The complement therefore draws on the shape of the whole transient rather than on one segment that a single handcrafted descriptor could isolate, in line with its intended role of capturing inter-segment information.
 
-*Computational cost.* R0 has 19,041 parameters (74 kB in 32-bit floating point) and needs 0.42 MFLOPs per pulse, most of them in the waveform branch (A2: 13.7 kFLOPs). On a single CPU thread, one inference takes 0.52 ms in PyTorch and the reference Python implementation of all 143 waveform features takes 6.5 ms, both negligible against the 100-s pulse, whereas the validation-selected GBDT comprises 1,000 trees with 61,000 nodes. This footprint is of the order targeted by embedded SOH estimators [19].
+*Computational cost.* R0 has 19,041 parameters (74 kB in 32-bit floating point) and needs 0.42 MFLOPs per pulse, most of them in the waveform branch (A2: 13.7 kFLOPs). On a single CPU thread, one inference takes 0.52 ms in PyTorch and the reference Python implementation of all 143 waveform features takes 6.5 ms, both negligible against the 100-s pulse. This footprint is of the order targeted by embedded SOH estimators [19].
 
 : Generalisation and robustness in the re-implementation (cell-macro RMSE, SOH pp).
 
-| Scenario | R0 | A2 | GBDT | R0 − A2 | 95% CI | *p* | Improved cells |
-|:----------------------|------:|------:|------:|-------:|:-------------|------:|--------:|
-| Five-fold cell-disjoint (reference) | 1.427 | 1.474 | 1.028 | −0.046 | −0.070 to −0.023 | <0.001 | 42/64 |
-| Leave-one-group-out | 1.560 | 1.594 | 1.401 | −0.035 | −0.053 to −0.015 | 0.008 | 39/64 |
-| Cycle count +10% (test) | 1.449 | 1.497 | 1.117 | −0.048 | −0.072 to −0.024 | <0.001 | 43/64 |
-| Cycle count −10% (test) | 1.477 | 1.518 | 1.176 | −0.041 | −0.063 to −0.018 | 0.002 | 39/64 |
-| Matched noise, σ~noise~ = 1 mV | 1.620 | 1.678 | 1.372 | −0.058 | −0.077 to −0.040 | <0.001 | 50/64 |
-| Matched noise, σ~noise~ = 2 mV | 1.715 | 1.760 | 1.424 | −0.045 | −0.069 to −0.022 | 0.002 | 46/64 |
-| One pulse per RPT^a^ | 1.549 | 1.574 | 1.203 | — | — | — | — |
-| Three pulses per RPT^a^ | 1.453 | 1.494 | 1.066 | — | — | — | — |
-| Three charge pulses | 1.432 | — | — | — | — | — | — |
+| Scenario | R0 | A2 | R0 − A2 | 95% CI | *p* | Improved cells |
+|:----------------------|------:|------:|-------:|:-------------|------:|--------:|
+| Five-fold cell-disjoint (reference) | 1.427 | 1.474 | −0.046 | −0.070 to −0.023 | <0.001 | 42/64 |
+| Leave-one-group-out | 1.560 | 1.594 | −0.035 | −0.053 to −0.015 | 0.008 | 39/64 |
+| Cycle count +10% (test) | 1.449 | 1.497 | −0.048 | −0.072 to −0.024 | <0.001 | 43/64 |
+| Cycle count −10% (test) | 1.477 | 1.518 | −0.041 | −0.063 to −0.018 | 0.002 | 39/64 |
+| Matched noise, σ~noise~ = 1 mV | 1.620 | 1.678 | −0.058 | −0.077 to −0.040 | <0.001 | 50/64 |
+| Matched noise, σ~noise~ = 2 mV | 1.715 | 1.760 | −0.045 | −0.069 to −0.022 | 0.002 | 46/64 |
+| One pulse per RPT^a^ | 1.549 | 1.574 | — | — | — |
+| Three pulses per RPT^a^ | 1.453 | 1.494 | — | — | — |
+| Three charge pulses | 1.432 | — | — | — | — | — |
 
 TN: Paired comparisons use 5,000 fold- (or group-) stratified cell bootstraps and sign-flip tests; descriptive, without multiplicity correction. ^a^ Mean over all condition combinations (6 and 20, respectively).
 
-![**Fig. 8.** Generalisation, robustness and attribution (re-implementation). (a) Group-mean RMSE when each cycling group is held out (leave-one-group-out); the legend gives the cell-macro RMSE under leave-one-group-out and, in parentheses, under five-fold cell-disjoint validation. (b) RMSE with a ±10% bias of the test cycle count (models fixed) and with matched Gaussian voltage noise in training and test data (models retrained). (c) RMSE versus the number of pulses averaged per RPT; lines show the mean over all condition combinations and bands their range. (d) Mean absolute integrated-gradient attribution of R0 per waveform sample for charge (solid) and discharge (dashed) pulses, averaged over test records, folds and seeds; shading marks the pulse segments.](figures/fig8_general.png){width=6.5in}
+![**Fig. 7.** Generalisation, robustness and attribution (re-implementation). (a) Group-mean RMSE when each cycling group is held out (leave-one-group-out); the legend gives the cell-macro RMSE under leave-one-group-out and, in parentheses, under five-fold cell-disjoint validation. (b) RMSE with a ±10% bias of the test cycle count (models fixed) and with matched Gaussian voltage noise in training and test data (models retrained). (c) RMSE versus the number of pulses averaged per RPT; lines show the mean over all condition combinations and bands their range. (d) Mean absolute integrated-gradient attribution of R0 per waveform sample for charge (solid) and discharge (dashed) pulses, averaged over test records, folds and seeds; shading marks the pulse segments.](figures/fig7_general.png){width=6.5in}
 
 ## 4.7. Error characteristics and scope
 
-The overall mean bias is close to zero but conceals SOH-dependent errors (Supplementary Fig. S3). Averaging the three initialisations of each record, R0 reaches a record-level RMSE of 1.461 pp, an MAE of 1.089 pp and a mean bias of −0.093 pp over the 16,938 records. The 630 records below 80% SOH are overestimated by 2.003 pp on average and the 5,682 records above 95% are underestimated by 0.574 pp (GBDT: +1.068 and −0.130 pp). Individual cells differ markedly (Supplementary Fig. S4): cells 12, 6, 44 and 3, ranked 1st, 22nd, 43rd and 64th by R0 error, reach 0.526, 0.961, 1.519 and 3.568 pp (A2: 0.704, 1.066, 1.723 and 3.624 pp). Across the 11 cycling groups the cell-macro RMSE spans 0.878–2.333 pp (Supplementary Fig. S5), with positive biases in groups 3 and 6 and negative biases in group 8; the correlation between the per-cell fade rate and the mean bias is 0.59.
+The overall mean bias is close to zero but conceals SOH-dependent errors (Supplementary Fig. S3). Averaging the three initialisations of each record, R0 reaches a record-level RMSE of 1.461 pp, an MAE of 1.089 pp and a mean bias of −0.093 pp over the 16,938 records. The 630 records below 80% SOH are overestimated by 2.003 pp on average and the 5,682 records above 95% are underestimated by 0.574 pp. Individual cells differ markedly (Supplementary Fig. S4): cells 12, 6, 44 and 3, ranked 1st, 22nd, 43rd and 64th by R0 error, reach 0.526, 0.961, 1.519 and 3.568 pp (A2: 0.704, 1.066, 1.723 and 3.624 pp). Across the 11 cycling groups the cell-macro RMSE spans 0.878–2.333 pp (Supplementary Fig. S5), with positive biases in groups 3 and 6 and negative biases in group 8; the correlation between the per-cell fade rate and the mean bias is 0.59.
 
-The analysis treats the 64 cells as the unit of inference on a fixed split; the low-SOH overestimation is reduced but not removed, and training data should come from the target sensor because difference- and spectrum-based features are sensitive to noise absent from training (Supplementary Note S6). Validation on field data with varying temperature and on target BMS hardware remains future work.
+The analysis treats the 64 cells as the unit of inference on a fixed split; the low-SOH overestimation is reduced but not removed, and training data should come from the target sensor because difference- and spectrum-based features are sensitive to noise absent from training (Supplementary Note S4). Validation on field data with varying temperature and on target BMS hardware remains future work.
 
 # 5. Conclusions
 
@@ -463,9 +449,9 @@ Using 16,938 short-pulse records from 64 public LFP/graphite cells, 15 encoder p
 
 (1) Encoders should be evaluated as pairings. The MLP backbone with a PatchTST complement (R0) gives the lowest observed RMSE (1.377 pp), 8.7% below MLP + CNN, while PatchTST ranks last with the other two backbones; the pairing term explains 11.8% of between-pairing variation (47.6% without FT-Transformer).
 
-(2) The waveform complement improves a neural handcrafted backbone. R0 is 0.123 pp (8.2%) below the backbone-only model in 58 of 64 cells, with the largest gain below 80% SOH (17.2%), consistent improvements in all six pulse conditions and a partial correction of the backbone's shrinkage bias. With a GBDT backbone, which already reaches 1.022 pp, the waveform adds no measurable gain.
+(2) The waveform complement improves a neural handcrafted backbone. R0 is 0.123 pp (8.2%) below the backbone-only model in 58 of 64 cells, with the largest gain below 80% SOH (17.2%), consistent improvements in all six pulse conditions and a partial correction of the backbone's shrinkage bias.
 
-(3) The waveform increment is reproduced on an independent NMC/graphite dataset (R0 − A2 = −0.163 pp, 7.6%, 39 of 44 cells) and originates from the dynamic response beyond the absolute voltage level. In a re-implementation, it also persists for held-out cycling conditions (−0.035 pp) and under matched sensor noise of 1–2 mV (−0.045 to −0.058 pp), and the neural model degrades far less than GBDT when cycling conditions are unseen (+9% versus +36%) or the cycle count is biased by ±10% (at most +3.5% versus +14.4%).
+(3) The waveform increment is reproduced on an independent NMC/graphite dataset (R0 − A2 = −0.163 pp, 7.6%, 39 of 44 cells) and originates from the dynamic response beyond the absolute voltage level. In a re-implementation, it also persists for held-out cycling conditions (−0.035 pp) and under matched sensor noise of 1–2 mV (−0.045 to −0.058 pp), while the error rises by only 9% for unseen cycling conditions and by at most 3.5% for a ±10% cycle-count bias.
 
 (4) Among the ablated factors, the cumulative cycle count is the most influential input (+41% error without it), and the monotonicity penalty acts as a mild regulariser (−0.028 pp). The (9, 4) patch setting and the mean-pooling head (−0.062 pp and 55% fewer parameters than a flatten head) are the most effective design choices, and $K=50$ balances accuracy and input size.
 
@@ -479,19 +465,19 @@ Using 16,938 short-pulse records from 64 public LFP/graphite cells, 15 encoder p
 | CNN | Convolutional neural network | $g$ | Regression head |
 | DCIR | Direct-current internal resistance | $K$ | Number of selected handcrafted features |
 | DOD | Depth of discharge | $L$, $P$, $S$ | Sequence length, patch length, patch stride |
-| GBDT | Gradient-boosting decision tree | $M$ | Number of patches |
-| GPR | Gaussian process regression | $Q_{ir}$ | Discharge capacity of cell $i$ at RPT $r$ |
-| LFP | Lithium iron phosphate | $y_{ir}$ | Measured SOH (%) |
-| MAE | Mean absolute error | $\hat y$, $\hat y^{\text{*}}$ | Predicted SOH and its standardised value |
-| MLP | Multilayer perceptron | $\Delta v_t$, $\tilde v_t$ | Referenced and standardised pulse voltage |
-| NMC | Nickel–manganese–cobalt oxide | $\mathbf h$ | Backbone input vector |
-| PW-Trans. | Point-wise Transformer | $n_{i,r}$, $\tau$ | Cumulative cycle count and its standardised value |
-| RBF-SVR | Radial-basis-function support vector regression | $\lambda$ | Weight of the monotonicity penalty |
-| RevIN | Reversible instance normalisation | $\rho_j$ | Spearman correlation of feature $j$ with SOH |
-| RMSE | Root-mean-square error | $\sigma_{\mathrm{noise}}$ | Standard deviation of added voltage noise |
-| RPT | Reference performance test | R0 | Reference configuration (MLP + PatchTST) |
-| SOC, SOH | State of charge, state of health | A1–A4, D1–D3, P1–P3 | Ablation configurations (Section 3.5.1) |
-| TCN | Temporal convolutional network | pp | Percentage points of SOH |
+| LFP | Lithium iron phosphate | $M$ | Number of patches |
+| MAE | Mean absolute error | $Q_{ir}$ | Discharge capacity of cell $i$ at RPT $r$ |
+| MLP | Multilayer perceptron | $y_{ir}$ | Measured SOH (%) |
+| NMC | Nickel–manganese–cobalt oxide | $\hat y$, $\hat y^{\text{*}}$ | Predicted SOH and its standardised value |
+| PW-Trans. | Point-wise Transformer | $\Delta v_t$, $\tilde v_t$ | Referenced and standardised pulse voltage |
+| RevIN | Reversible instance normalisation | $\mathbf h$ | Backbone input vector |
+| RMSE | Root-mean-square error | $n_{i,r}$, $\tau$ | Cumulative cycle count and its standardised value |
+| RPT | Reference performance test | $\lambda$ | Weight of the monotonicity penalty |
+| SOC, SOH | State of charge, state of health | $\rho_j$ | Spearman correlation of feature $j$ with SOH |
+| TCN | Temporal convolutional network | $\sigma_{\mathrm{noise}}$ | Standard deviation of added voltage noise |
+|  |  | R0 | Reference configuration (MLP + PatchTST) |
+|  |  | A1–A4, D1–D3, P1–P3 | Ablation configurations (Section 3.5.1) |
+|  |  | pp | Percentage points of SOH |
 
 @@HEAD Declaration of Competing Interest
 
@@ -499,7 +485,7 @@ The authors declare that they have no known competing financial interests or per
 
 @@HEAD Data availability
 
-The battery data are publicly available from the UConn-ISU-ILCC LFP and UConn-ILCC NMC ageing datasets [28,31]. Cleaning rules, input definitions, splits and metrics are specified in Sections 2 and 3 and Supplementary Notes S1–S6. [Repository, version and access details of the code and derived data to be added by the authors.]
+The battery data are publicly available from the UConn-ISU-ILCC LFP and UConn-ILCC NMC ageing datasets [28,31]. Cleaning rules, input definitions, splits and metrics are specified in Sections 2 and 3 and Supplementary Notes S1–S4. [Repository, version and access details of the code and derived data to be added by the authors.]
 
 @@HEAD Acknowledgments
 
@@ -507,7 +493,7 @@ The battery data are publicly available from the UConn-ISU-ILCC LFP and UConn-IL
 
 @@HEAD Appendix A. Supplementary data
 
-Supplementary data to this article (Supplementary Notes S1–S6, Tables S1–S7, Figs. S1–S5 and Algorithm S1) are provided in a separate file.
+Supplementary data to this article (Supplementary Notes S1–S4, Tables S1–S6, Figs. S1–S5 and Algorithm S1) are provided in a separate file.
 
 @@HEAD References
 

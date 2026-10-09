@@ -10,15 +10,11 @@
 
 @@TOC Supplementary Note S2. PatchTST encoder equations
 
-@@TOC Supplementary Note S3. Hyperparameter grids of the conventional regressors
+@@TOC Supplementary Note S3. Statistical test families
 
-@@TOC Supplementary Note S4. Statistical test families
+@@TOC Supplementary Note S4. Re-implementation used for the generalisation, robustness and deployment experiments
 
-@@TOC Supplementary Note S5. Waveform increment over the GBDT backbone
-
-@@TOC Supplementary Note S6. Re-implementation used for the generalisation, robustness and deployment experiments
-
-@@TOC Supplementary Algorithm S1; Supplementary Tables S1–S7; Supplementary Figs. S1–S5
+@@TOC Supplementary Algorithm S1; Supplementary Tables S1–S6; Supplementary Figs. S1–S5
 
 # Supplementary Note S1. Handcrafted feature definitions
 
@@ -146,29 +142,21 @@ $$E_{\mathrm v}(\tilde{\mathbf v})=\mathrm{Drop}\left(\mathrm{ReLU}\left(\mathbf
 
 {{EQ:S20}}
 
-# Supplementary Note S3. Hyperparameter grids of the conventional regressors
+# Supplementary Note S3. Statistical test families
 
-Hyperparameters were selected on the validation cells of each fold by cell-macro RMSE, using the same validation cells as neural early stopping, and the selected models were not refitted on training plus validation cells. Ridge: regularisation coefficient from 10^−4^ to 10^3^. Random forest: 300 trees, maximum feature fraction ∈ {0.33, 1.0}, minimum leaf size ∈ {1, 5, 20}, seeds 0, 1, 2. GBDT (scikit-learn histogram gradient boosting): learning rate ∈ {0.05, 0.1}, maximum leaf nodes ∈ {15, 31}, minimum leaf size ∈ {20, 100}, iterations ∈ {300, 1,000}. RBF-SVR: *C* ∈ {1, 10, 100}, insensitive-band width ε ∈ {0.05, 0.1} on the standardised target, kernel width by the scikit-learn "scale" rule. GPR: product of a constant and an RBF kernel plus a white-noise kernel; kernel hyperparameters were optimised by maximum likelihood on a fixed subsample of 2,000 training records (two random restarts), after which the model was conditioned on all training records. All algorithms except random forest are deterministic.
+Holm correction was applied within the following prespecified families at α = 0.05: (1) the 14 encoder pairings versus MLP + CNN; (2) the five waveform complements versus A2; (3) the confirmatory ablations R0 − A1, R0 − A2, R0 − A3 and A3 − A4; (4) the three patch configurations versus R0; (5) the three adaptation ablations versus R0; (6) the six feature-count levels versus *K* = 50, separately for RMSE and MAE; and (7) the reproduced reference model versus A2 and versus R0 (an extended family whose adjusted *p* values are conservative). A1 − A2 was a single prespecified comparison without correction. Marginal effects, difference-in-differences, stratified increments, residual complementarity and low-SOH bias are descriptive. Confidence intervals are conditional on the fixed split and the trained models and do not cover the variability of new data collection or repartitioning.
 
-# Supplementary Note S4. Statistical test families
-
-Holm correction was applied within the following prespecified families at α = 0.05: (1) the 14 encoder pairings versus MLP + CNN; (2) the five waveform complements versus A2; (3) the confirmatory ablations R0 − A1, R0 − A2, R0 − A3 and A3 − A4; (4) the three patch configurations versus R0; (5) the three adaptation ablations versus R0; (6) the six feature-count levels versus *K* = 50, separately for RMSE and MAE; (7) the conventional regressors, information-source controls, reproduced reference model and post hoc configurations versus A2 and versus R0 (30 comparisons); (8) the four residual comparisons on the GBDT backbone; and (9) the two post hoc raw-waveform augmentations. A1 − A2 was a single prespecified comparison without correction. Marginal effects, difference-in-differences, stratified increments, residual complementarity and low-SOH bias are descriptive. Confidence intervals are conditional on the fixed split and the trained models and do not cover the variability of new data collection or repartitioning.
-
-# Supplementary Note S5. Waveform increment over the GBDT backbone
-
-With the GBDT selected in Supplementary Note S3 as the backbone, networks with the structures of R0, A2 and A1 learned its residuals (main text, Section 3.5.4). The waveform increment (G+R0) − (G+A2) was −0.008 pp with 36 of 64 cells improved (Holm *p* = 0.35), and none of the residual learners improved significantly on the GBDT alone. Appending the 101 standardised voltages directly as additional input columns of GBDT (extended grid with up to 63 leaf nodes and 3,000 iterations) and of RBF-SVR, followed by re-tuning, likewise produced no detectable gain. These analyses were defined after part of the GBDT results had been seen and are reported as post hoc.
-
-# Supplementary Note S6. Re-implementation used for the generalisation, robustness and deployment experiments
+# Supplementary Note S4. Re-implementation used for the generalisation, robustness and deployment experiments
 
 Apart from the main NMC/graphite results, the experiments of Section 4.6 were run with an independent re-implementation of the protocol written in Python (NumPy, scikit-learn 1.9 and PyTorch 2.14 on CPU, one thread per run), starting from the publisher's processed pulse files [31]. Cleaning reproduced the record counts exactly: 17,130 records in 2,855 groups before cleaning, 192 records removed at the 42nd RPT, and 16,938 records in 2,823 complete groups (SOH 72.34–100%) after cleaning. The 143 waveform features were implemented from the definitions in Supplementary Note S1; details not fixed by those definitions, such as the quantile levels of the global family and the nine voltage differences not listed in Note S1, may differ from the original code, and the response-time levels were set to 0.5, 0.632 and 0.9. Feature selection was nonetheless similar: in fold 0 it selected 16 frequency and wavelet, 14 segment, 11 difference-dynamics, 6 global, 1 boundary and 1 nonlinear feature together with the DCIR, which ranked 13th; 44 features were selected in every fold and 57 in at least one. The split permutation used NumPy's default generator with seed 42, which reproduces the fold sizes but not necessarily the fold membership of the original runs. Architectures, loss, optimiser, scheduler, early stopping and seeds follow Sections 3.2–3.4 of the main text, with positional embeddings initialised from U(−0.02, 0.02).
 
-Under the original five-fold protocol the re-implementation gives R0 1.427, A2 1.474 and GBDT 1.028 pp (reported: 1.377, 1.500 and 1.022 pp). The waveform increment keeps its sign and significance (−0.046 pp, −0.070 to −0.023; *p* < 0.001; 42 of 64 cells), and cells 12 and 3 are again the best- and worst-estimated cells. Table S7 lists all re-implementation results. Among the conventional baselines, ridge regression, RBF-SVR, the *τ*-only controls and the without-*τ* ridge and GBDT were re-run (Table S5); where reported values exist, they agree closely (RBF-SVR 1.007 vs 1.026 pp, without-*τ* GBDT 1.698 vs 1.663 pp, *τ*-only models about 3 pp). Random forest and GPR on the full input and the without-*τ* random forest were not re-run because of their computational and memory cost.
+Under the original five-fold protocol the re-implementation gives R0 1.427 and A2 1.474 pp (reported: 1.377 and 1.500 pp). The waveform increment keeps its sign and significance (−0.046 pp, −0.070 to −0.023; *p* < 0.001; 42 of 64 cells), and cells 12 and 3 are again the best- and worst-estimated cells. Table S6 lists all re-implementation results.
 
-*NMC/graphite dataset.* The UConn-ILCC NMC dataset [31] records the same 100-s pulses at nine nominal SOCs; the three SOCs used for LFP (20%, 50% and 90%) were retained, giving six conditions per RPT, 8,016 records in 1,336 cell–RPT groups of 44 cells and SOH from 41.2% to 100%. Because NMC cells have a higher resistance, the voltage-step and range limits of Eq. (2) were relaxed to 0.3 and 0.8 V; no record was removed. The main-text results come from the original implementation (five folds × three seeds, *K* = 50, *λ* = 0.1, as for LFP): R0 1.968 pp, A2 2.132 pp, R0 − A2 = −0.163 pp (Holm-adjusted *p* = 0.0004, 39/44), A1 2.468 pp and GBDT 0.965 pp. The DCIR correlates strongly with SOH (*ρ* ≈ −0.82) but entered none of the 50 selected features because it is redundant with selected waveform features, so it was added to the A1 input separately, as the definition of A1 requires; R0, A2 and GBDT were run unchanged.
+*NMC/graphite dataset.* The UConn-ILCC NMC dataset [31] records the same 100-s pulses at nine nominal SOCs; the three SOCs used for LFP (20%, 50% and 90%) were retained, giving six conditions per RPT, 8,016 records in 1,336 cell–RPT groups of 44 cells and SOH from 41.2% to 100%. Because NMC cells have a higher resistance, the voltage-step and range limits of Eq. (2) were relaxed to 0.3 and 0.8 V; no record was removed. The main-text results come from the original implementation (five folds × three seeds, *K* = 50, *λ* = 0.1, as for LFP): R0 1.968 pp, A2 2.132 pp, R0 − A2 = −0.163 pp (Holm-adjusted *p* = 0.0004, 39/44) and A1 2.468 pp. The DCIR correlates strongly with SOH (*ρ* ≈ −0.82) but entered none of the 50 selected features because it is redundant with selected waveform features, so it was added to the A1 input separately, as the definition of A1 requires; R0 and A2 were run unchanged.
 
 *Difference between the re-implementation and the original implementation.* The re-implementation found no waveform increment on NMC (R0 2.030 pp, A2 2.026 pp, R0 − A2 = +0.004 pp, *p* = 0.90). Diagnostics trace the difference to the backbone features. The re-implementation computes its features on the absolute voltage and, on NMC, selects absolute-level features such as the pre-pulse and final voltages and voltage quantiles (six in fold 0, almost none on LFP). Because the NMC open-circuit voltage is sloped and capacity fade shifts the actual SOC of each pulse, the pre-pulse voltage tracks SOH (mean absolute Spearman correlation 0.93, LFP 0.36) and predicts the actual SOC deviation with *R*² = 0.964 (LFP 0.489). Once the backbone holds this information, the dynamic information of the waveform branch partly overlaps with it: within each pulse condition the selected features explain 99.4% of the variance of the first ten principal components of ΔV (LFP 18.3%). With the 28 absolute-level features removed from the candidates, the re-implementation gives A2 2.098 pp, R0 1.940 pp and R0 − A2 = −0.158 pp (−0.205 to −0.112, *p* < 0.001, 36/44), consistent with the original implementation. Using all nine SOCs (24,048 records) does not change the re-implementation result (R0 − A2 = +0.017 pp, *p* = 0.67), so the difference is not a matter of data volume.
 
-*Noise not seen in training.* When Gaussian noise is added only to the test voltages of models trained on clean data, all feature-based models deteriorate strongly (σ~noise~ = 0.5 mV: R0 4.37, A2 4.60, GBDT 1.48 pp), because difference- and spectrum-based features computed on the smooth, 0.1-mV-resolution resampled records are sensitive to noise absent from training. Models should therefore be trained on data from the target sensor, or with matching noise augmentation, as in the matched-noise experiment of Section 4.6.
+*Noise not seen in training.* When Gaussian noise is added only to the test voltages of models trained on clean data, both neural models deteriorate strongly (σ~noise~ = 0.5 mV: R0 4.37, A2 4.60 pp), because difference- and spectrum-based features computed on the smooth, 0.1-mV-resolution resampled records are sensitive to noise absent from training. Models should therefore be trained on data from the target sensor, or with matching noise augmentation, as in the matched-noise experiment of Section 4.6.
 
 # Supplementary Algorithm S1
 
@@ -221,13 +209,9 @@ TN: ✓, input enters the branch; —, not used or not applicable.
 | Patch parameters | P1, P2, P3 | MLP | PatchTST (5, 2), (5, 4), (9, 2) | ✓ | 0.1 | 45 |
 | Adaptation | D1, D2, D3 | MLP | Flatten head, + RevIN, raw voltage | ✓ | 0.1 | 45 |
 | Feature count | *K* = 10, 20, 30, 75, 100, 144 | MLP, *K* features | PatchTST (9, 4) | ✓ | 0.1 | 90 (*K* = 50 reuses R0) |
-| Conventional | Ridge, RF, GBDT, SVR, GPR | Same 51-dim input as A2 | — | ✓ | — | 1 per fold (RF 3) |
-| Information source | *τ* only | *τ* only | — | ✓ | — | 1 per fold (RF 3) |
-| Information source | Without *τ* | 50 features | — | — | — | 1 per fold (RF 3) |
 | Published model | Nowacki et al. [28], reproduced | — | Raw ΔV, 5 × 100 MLP | — | — | 30 models |
-| Strong backbone | G+R0, G+A2, G+A1 | GBDT, network learns residual | As R0, A2, A1 | ✓ | 0.1 | 45 |
 
-TN: Neural configurations use 5 folds × 3 seeds (510 trainings in total, plus 30 reproduced models). Post hoc GBDT/SVR raw-voltage configurations are not listed.
+TN: Neural configurations use 5 folds × 3 seeds (465 trainings in total, plus 30 reproduced models).
 
 : Supplementary Table S4. Stratified waveform increment (R0 − A2, SOH pp).
 
@@ -252,30 +236,7 @@ TN: Neural configurations use 5 folds × 3 seeds (510 trainings in total, plus 3
 
 TN: True-SOH strata are formed at the cell–RPT level after averaging the six conditions, and each cell's RMSE is computed within the stratum; SOC, direction and condition strata use single records. Predictions are averaged over the three seeds. Descriptive analysis without multiplicity correction.
 
-: Supplementary Table S5. Conventional regressors, information-source controls and reference models (SOH pp).
-
-|Model|Input|Reported|Re-implemented|
-|:--------------------------|:----------------------|--------:|------------:|
-| R0 (dual-branch) | Features + *τ* + ΔV | 1.377 | 1.427 |
-| A2 (backbone only) | Features + *τ* | 1.500 | 1.474 |
-| Ridge | Features + *τ* | n.r. | 1.879 |
-| Random forest | Features + *τ* | n.r. | — |
-| GBDT | Features + *τ* | 1.022 | 1.028 |
-| RBF-SVR | Features + *τ* | 1.026 | 1.007 |
-| GPR | Features + *τ* | n.r. | — |
-| Ridge | *τ* only | ≈3^a^ | 3.083 |
-| Random forest | *τ* only | ≈3^a^ | 3.095 |
-| GBDT | *τ* only | ≈3^a^ | 2.881 |
-| Ridge | Features without *τ* | n.r. | 2.593 |
-| Random forest | Features without *τ* | n.r. | — |
-| GBDT | Features without *τ* | 1.663 | 1.698 |
-| Nowacki et al. [28], reproduced | Raw ΔV | 1.628 | — |
-| GBDT + raw voltage (post hoc) | Features + *τ* + 101 voltages | no gain^b^ | — |
-| RBF-SVR + raw voltage (post hoc) | Features + *τ* + 101 voltages | no gain^b^ | — |
-
-TN: Cell-macro RMSE over the 64 test cells. "Reported" values are those of the original runs on which the main text is based; n.r., not given in the source draft (to be inserted from the original result files). "Re-implemented" values come from the CPU re-implementation of Supplementary Note S6 with the same grids (random forest averaged over seeds 0–2); —, not run in the re-implementation. ^a^ About 3 pp in the original runs. ^b^ No detectable gain over GBDT and RBF-SVR, respectively (Supplementary Note S5).
-
-: Supplementary Table S6. Sensitivity to the number of handcrafted features (SOH pp).
+: Supplementary Table S5. Sensitivity to the number of handcrafted features (SOH pp).
 
 | *K* | Backbone input | Parameters | RMSE | MAE | ΔRMSE | 95% CI | Holm *p* | Improved / worse cells |
 |---:|------:|------:|-----:|-----:|-------:|:------------|------:|:--------|
@@ -289,23 +250,23 @@ TN: Cell-macro RMSE over the 64 test cells. "Reported" values are those of the o
 
 TN: *K* excludes the separately appended cycle count, so the backbone input has *K* + 1 dimensions. ΔRMSE is the level minus *K* = 50; Holm correction covers the six RMSE comparisons. Improved (worse) cells have lower (higher) error than *K* = 50.
 
-: Supplementary Table S7. Results of the supplementary experiments (cell-macro RMSE, SOH pp).
+: Supplementary Table S6. Results of the supplementary experiments (cell-macro RMSE, SOH pp).
 
-|Scenario|Data|R0|A2|A1|GBDT|R0 − A2|95% CI|*p*|Improved cells|
-|:-----------------|:----|-----:|-----:|-----:|-----:|-------:|:-------------|-----:|--------:|
-| Five-fold, reported (main text) | LFP | 1.377 | 1.500 | 1.494 | 1.022 | −0.123 | −0.141 to −0.103 | <0.001 | 58/64 |
-| Five-fold, re-implementation | LFP | 1.427 | 1.474 | — | 1.028 | −0.046 | −0.070 to −0.023 | <0.001 | 42/64 |
-| Leave-one-group-out | LFP | 1.560 | 1.594 | — | 1.401 | −0.035 | −0.053 to −0.015 | 0.008 | 39/64 |
-| Cycle count +10% (test) | LFP | 1.449 | 1.497 | — | 1.117 | −0.048 | −0.072 to −0.024 | <0.001 | 43/64 |
-| Cycle count −10% (test) | LFP | 1.477 | 1.518 | — | 1.176 | −0.041 | −0.063 to −0.018 | 0.002 | 39/64 |
-| Matched noise, σ~noise~ = 1 mV | LFP | 1.620 | 1.678 | — | 1.372 | −0.058 | −0.077 to −0.040 | <0.001 | 50/64 |
-| Matched noise, σ~noise~ = 2 mV | LFP | 1.715 | 1.760 | — | 1.424 | −0.045 | −0.069 to −0.022 | 0.002 | 46/64 |
-| Test-only noise, σ~noise~ = 0.5 mV^a^ | LFP | 4.374 | 4.595 | — | 1.485 | — | — | — | — |
-| Five-fold, original implementation^b^ | NMC | 1.968 | 2.132 | 2.468 | 0.965 | −0.163 | to be added | 0.0004^c^ | 39/44 |
-| Five-fold, re-implementation | NMC | 2.030 | 2.026 | 2.317 | 0.935 | +0.004 | −0.042 to 0.047 | 0.90 | 21/44 |
-| Five-fold, re-implementation, backbone without absolute-level features | NMC | 1.940 | 2.098 | — | — | −0.158 | −0.205 to −0.112 | <0.001 | 36/44 |
+|Scenario|Data|R0|A2|A1|R0 − A2|95% CI|*p*|Improved cells|
+|:-----------------|:----|-----:|-----:|-----:|-------:|:-------------|-----:|--------:|
+| Five-fold, reported (main text) | LFP | 1.377 | 1.500 | 1.494 | −0.123 | −0.141 to −0.103 | <0.001 | 58/64 |
+| Five-fold, re-implementation | LFP | 1.427 | 1.474 | — | −0.046 | −0.070 to −0.023 | <0.001 | 42/64 |
+| Leave-one-group-out | LFP | 1.560 | 1.594 | — | −0.035 | −0.053 to −0.015 | 0.008 | 39/64 |
+| Cycle count +10% (test) | LFP | 1.449 | 1.497 | — | −0.048 | −0.072 to −0.024 | <0.001 | 43/64 |
+| Cycle count −10% (test) | LFP | 1.477 | 1.518 | — | −0.041 | −0.063 to −0.018 | 0.002 | 39/64 |
+| Matched noise, σ~noise~ = 1 mV | LFP | 1.620 | 1.678 | — | −0.058 | −0.077 to −0.040 | <0.001 | 50/64 |
+| Matched noise, σ~noise~ = 2 mV | LFP | 1.715 | 1.760 | — | −0.045 | −0.069 to −0.022 | 0.002 | 46/64 |
+| Test-only noise, σ~noise~ = 0.5 mV^a^ | LFP | 4.374 | 4.595 | — | — | — | — | — |
+| Five-fold, original implementation^b^ | NMC | 1.968 | 2.132 | 2.468 | −0.163 | to be added | 0.0004^c^ | 39/44 |
+| Five-fold, re-implementation | NMC | 2.030 | 2.026 | 2.317 | +0.004 | −0.042 to 0.047 | 0.90 | 21/44 |
+| Five-fold, re-implementation, backbone without absolute-level features | NMC | 1.940 | 2.098 | — | −0.158 | −0.205 to −0.112 | <0.001 | 36/44 |
 
-TN: Paired comparisons use 5,000 fold- (or group-) stratified cell bootstraps and two-sided sign-flip tests, without multiplicity correction. ^a^ Models trained on clean data with noise added to the test voltages only. ^b^ Original implementation; DCIR added to the A1 input (Supplementary Note S6). ^c^ Holm-adjusted. Group-level leave-one-group-out errors are shown in Fig. 8a of the main text.
+TN: Paired comparisons use 5,000 fold- (or group-) stratified cell bootstraps and two-sided sign-flip tests, without multiplicity correction. ^a^ Models trained on clean data with noise added to the test voltages only. ^b^ Original implementation; DCIR added to the A1 input (Supplementary Note S4). ^c^ Holm-adjusted. Group-level leave-one-group-out errors are shown in Fig. 7a of the main text.
 
 # Supplementary Figures
 
