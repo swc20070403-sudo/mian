@@ -1,0 +1,14 @@
+{
+ "features_computed": 150,
+ "voltage_derived": 143,
+ "threads": 1,
+ "single_pulse_ms_median": 2.24265,
+ "single_pulse_ms_p05": 2.19606,
+ "single_pulse_ms_p95": 2.406635,
+ "single_pulse_calls": 200,
+ "batch_all_pulses_s": 17.4569233000002,
+ "batch_pulses": 17130,
+ "batch_ms_per_pulse": 1.0190848394629421,
+ "python": "3.10.11",
+ "numpy": "2.2.6"
+}

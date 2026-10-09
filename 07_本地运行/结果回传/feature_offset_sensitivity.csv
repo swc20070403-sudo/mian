@@ -1,0 +1,151 @@
+feature,family,median_abs_change_over_sd,max_abs_change_over_sd,share_rows_changed,level_class
+global_v_start,global_waveform,2.924284190404344,2.924284190404344,1.0,absolute voltage level
+global_v_end,global_waveform,2.917230361336286,2.917230361336286,1.0,absolute voltage level
+global_v_delta,global_waveform,0.0,0.0,0.0,offset-invariant
+global_mean,global_waveform,2.814381580080262,2.814381580080262,1.0,absolute voltage level
+global_median,global_waveform,2.876875239574453,2.876875239574453,1.0,absolute voltage level
+global_std,global_waveform,0.0,0.0,0.0,offset-invariant
+global_variance,global_waveform,0.0,0.0,0.0,offset-invariant
+global_min,global_waveform,2.5566175218225253,2.5566175218225253,1.0,absolute voltage level
+global_max,global_waveform,2.549869138080398,2.549869138080398,1.0,absolute voltage level
+global_range,global_waveform,0.0,0.0,0.0,offset-invariant
+global_q25,global_waveform,2.8736503083963396,2.8736503083963396,1.0,absolute voltage level
+global_q75,global_waveform,2.8534530246887253,2.8534530246887253,1.0,absolute voltage level
+global_iqr,global_waveform,0.0,0.0,0.0,offset-invariant
+global_rms,global_waveform,2.8143710844079535,2.814372998186832,1.0,absolute voltage level
+global_auc,global_waveform,2.8123079053313975,2.8123079053313975,1.0,absolute voltage level
+global_energy,global_waveform,2.859922282832988,2.904485120948846,1.0,absolute voltage level
+global_skew,global_waveform,0.0,4.5547589844903614e-10,0.0004670169293636894,offset-invariant
+global_kurtosis_excess,global_waveform,0.0,5.679826932052217e-09,0.0012259194395796847,offset-invariant
+global_hist_entropy,global_waveform,0.0,1.785027200968151,0.011150029188558085,invariant (float bin-edge artefact only)
+global_mad,global_waveform,0.0,0.0,0.0,offset-invariant
+global_endpoint_slope,global_waveform,0.0,0.0,0.0,offset-invariant
+global_xjtu_sequence_entropy,global_waveform,0.5612338184474813,0.985581340602256,1.0,level-dependent normalisation
+global_linear_slope,global_waveform,0.0,0.0,0.0,offset-invariant
+global_linear_r2,global_waveform,0.0,5.1716640231188285e-11,0.0,offset-invariant
+segment1_p30_mean,segment_statistics,2.894773175346997,2.894773175346997,1.0,absolute voltage level
+segment1_p30_median,segment_statistics,2.8901609784636673,2.8901609784636673,1.0,absolute voltage level
+segment1_p30_std,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment1_p30_min,segment_statistics,2.9058863475122543,2.9058863475122543,1.0,absolute voltage level
+segment1_p30_max,segment_statistics,2.9044737639297926,2.9044737639297926,1.0,absolute voltage level
+segment1_p30_range,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment1_p30_rms,segment_statistics,2.8947728337868255,2.894773065368692,1.0,absolute voltage level
+segment1_p30_auc,segment_statistics,2.894369037071017,2.894369037071017,1.0,absolute voltage level
+segment1_p30_energy,segment_statistics,2.944530988165621,2.9844740761934014,1.0,absolute voltage level
+segment1_p30_skew,segment_statistics,0.0,1.715392709528957e-10,0.007355516637478109,offset-invariant
+segment1_p30_kurtosis_excess,segment_statistics,0.0,5.099634813632358e-10,0.00793928779918272,offset-invariant
+segment1_p30_hist_entropy,segment_statistics,0.0,1.638250796583716,0.02574430823117338,invariant (float bin-edge artefact only)
+segment1_p30_linear_slope,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment1_p30_linear_intercept,segment_statistics,2.9283669658447637,2.9283669658447637,1.0,absolute voltage level
+segment1_p30_linear_r2,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment2_p10_mean,segment_statistics,2.0697782599309953,2.0697782599309953,1.0,absolute voltage level
+segment2_p10_median,segment_statistics,2.0466435771691067,2.0466435771691067,1.0,absolute voltage level
+segment2_p10_std,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment2_p10_min,segment_statistics,2.1247191342490686,2.1247191342490686,1.0,absolute voltage level
+segment2_p10_max,segment_statistics,2.0960377353102917,2.0960377353102917,1.0,absolute voltage level
+segment2_p10_range,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment2_p10_rms,segment_statistics,2.069765430187829,2.0697661546064374,1.0,absolute voltage level
+segment2_p10_auc,segment_statistics,2.0652907817437978,2.0652907817438058,1.0,absolute voltage level
+segment2_p10_energy,segment_statistics,2.0974088999666853,2.151388432375326,1.0,absolute voltage level
+segment2_p10_skew,segment_statistics,0.0,1.693490426407816e-10,0.0023934617629889085,offset-invariant
+segment2_p10_kurtosis_excess,segment_statistics,0.0,5.703157087220899e-10,0.0027437244600116754,offset-invariant
+segment2_p10_hist_entropy,segment_statistics,0.0,2.1119183612652344,5.837711617046118e-05,invariant (float bin-edge artefact only)
+segment2_p10_linear_slope,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment2_p10_linear_intercept,segment_statistics,2.3107543006501614,2.3107543006501614,1.0,absolute voltage level
+segment2_p10_linear_r2,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment3_p60_mean,segment_statistics,2.8498562677078145,2.8498562677078145,1.0,absolute voltage level
+segment3_p60_median,segment_statistics,2.877522842249819,2.877522842249819,1.0,absolute voltage level
+segment3_p60_std,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment3_p60_min,segment_statistics,2.7491475841981345,2.7491475841981345,1.0,absolute voltage level
+segment3_p60_max,segment_statistics,2.6886840810549604,2.6886840810549604,1.0,absolute voltage level
+segment3_p60_range,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment3_p60_rms,segment_statistics,2.849839589564502,2.8498403875200764,1.0,absolute voltage level
+segment3_p60_auc,segment_statistics,2.8517307934354066,2.8517307934354066,1.0,absolute voltage level
+segment3_p60_energy,segment_statistics,2.8973557561554713,2.939638802035578,1.0,absolute voltage level
+segment3_p60_skew,segment_statistics,0.0,6.184032396964241e-10,0.0003502626970227671,offset-invariant
+segment3_p60_kurtosis_excess,segment_statistics,0.0,2.3488571998105873e-09,0.0012259194395796847,offset-invariant
+segment3_p60_hist_entropy,segment_statistics,0.0,0.7093389189277405,0.02918855808523059,invariant (float bin-edge artefact only)
+segment3_p60_linear_slope,segment_statistics,0.0,0.0,0.0,offset-invariant
+segment3_p60_linear_intercept,segment_statistics,2.70053274037892,2.70053274037892,1.0,absolute voltage level
+segment3_p60_linear_r2,segment_statistics,0.0,0.0,0.0,offset-invariant
+transient_jump_pre_to_segment1,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_jump_segment1_to_segment2,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_jump_segment2_to_segment3,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment1_net,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment2_net,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment3_net,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_xjtu_early_change,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_xjtu_middle_change,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_xjtu_late_change,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment1_response_lag1,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment1_response_lag5,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment1_response_lag10,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment3_response_lag1,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment3_response_lag5,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment3_response_lag10,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment3_t10,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment3_t50,transient_boundary,0.0,0.0,0.0,offset-invariant
+transient_segment3_t90,transient_boundary,0.0,0.0,0.0,offset-invariant
+difference1_mean,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference1_std,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference1_min,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference1_max,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference1_range,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference1_rms,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference1_skew,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference1_kurtosis_excess,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference1_hist_entropy,difference_dynamics,0.0,0.0,0.0,invariant (float bin-edge artefact only)
+difference1_zero_crossings,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference1_total_variation,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference2_mean,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference2_std,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference2_min,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference2_max,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference2_range,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference2_rms,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference2_skew,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference2_kurtosis_excess,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference2_hist_entropy,difference_dynamics,0.0,0.0,0.0,invariant (float bin-edge artefact only)
+difference2_zero_crossings,difference_dynamics,0.0,0.0,0.0,offset-invariant
+difference2_total_variation,difference_dynamics,0.0,0.0,0.0,offset-invariant
+fft_amplitude_bin01,frequency_wavelet,0.0,1.4660649192284928e-08,0.0004670169293636894,offset-invariant
+fft_amplitude_bin02,frequency_wavelet,0.0,0.0,0.0,offset-invariant
+fft_amplitude_bin03,frequency_wavelet,0.0,0.0,0.0,offset-invariant
+fft_amplitude_bin04,frequency_wavelet,0.0,0.0,0.0,offset-invariant
+fft_amplitude_bin05,frequency_wavelet,0.0,0.0,0.0,offset-invariant
+fft_amplitude_bin06,frequency_wavelet,0.0,0.0,0.0,offset-invariant
+fft_amplitude_bin07,frequency_wavelet,0.0,0.0,0.0,offset-invariant
+fft_amplitude_bin08,frequency_wavelet,0.0,0.0,0.0,offset-invariant
+fft_bandpower_fraction_b1,frequency_wavelet,0.0,7.766183393812661e-09,0.00011675423234092235,offset-invariant
+fft_bandpower_fraction_b2,frequency_wavelet,0.0,1.131229717877925e-08,5.837711617046118e-05,offset-invariant
+fft_bandpower_fraction_b3,frequency_wavelet,0.0,4.9847354745635225e-09,0.00017513134851138354,offset-invariant
+fft_bandpower_fraction_b4,frequency_wavelet,0.0,3.976312609109038e-09,0.00011675423234092235,offset-invariant
+fft_dominant_frequency,frequency_wavelet,0.0,0.0,0.0,offset-invariant
+fft_dominant_amplitude,frequency_wavelet,0.0,1.4660649192284928e-08,0.0004670169293636894,offset-invariant
+fft_spectral_centroid,frequency_wavelet,0.0,8.16500608419991e-09,5.837711617046118e-05,offset-invariant
+fft_spectral_spread,frequency_wavelet,0.0,4.9965153585766935e-09,0.00011675423234092235,offset-invariant
+fft_rolloff85,frequency_wavelet,0.0,0.0,0.0,offset-invariant
+fft_flatness,frequency_wavelet,0.0,1.6991869511558384e-09,0.00011675423234092235,offset-invariant
+fft_spectral_entropy,frequency_wavelet,0.0,0.0,0.0,offset-invariant
+dwt_a4_energy_fraction,frequency_wavelet,0.5946220451310326,0.9529260771738061,1.0,level-dependent normalisation
+dwt_d4_energy_fraction,frequency_wavelet,0.5418813333817762,0.9324919433512154,1.0,level-dependent normalisation
+dwt_d3_energy_fraction,frequency_wavelet,0.6026715347255942,0.9508628256009993,1.0,level-dependent normalisation
+dwt_d2_energy_fraction,frequency_wavelet,0.607249257194068,0.9548242664160973,1.0,level-dependent normalisation
+dwt_d1_energy_fraction,frequency_wavelet,0.6422800664792353,1.0203046752589786,1.0,level-dependent normalisation
+nonlinear_autocorr_lag1,nonlinear_complexity,0.0,0.0,0.0,offset-invariant
+nonlinear_autocorr_lag5,nonlinear_complexity,0.0,0.0,0.0,offset-invariant
+nonlinear_autocorr_lag10,nonlinear_complexity,0.0,0.0,0.0,offset-invariant
+nonlinear_hjorth_activity,nonlinear_complexity,0.0,0.0,0.0,offset-invariant
+nonlinear_hjorth_mobility,nonlinear_complexity,0.0,0.0,0.0,offset-invariant
+nonlinear_hjorth_complexity,nonlinear_complexity,0.0,0.0,0.0,offset-invariant
+nonlinear_approximate_entropy,nonlinear_complexity,0.0,0.0,0.0,offset-invariant
+nonlinear_sample_entropy,nonlinear_complexity,0.0,0.0,0.0,offset-invariant
+nonlinear_permutation_entropy,nonlinear_complexity,0.0,0.0,0.0,offset-invariant
+nonlinear_hurst_variogram,nonlinear_complexity,0.0,0.0,0.0,offset-invariant
+context_soc_nominal_fraction,context_metadata,0.0,0.0,0.0,context (not voltage)
+context_soc_coulomb_fraction,context_metadata,0.0,0.0,0.0,context (not voltage)
+context_soc_deviation_fraction,context_metadata,0.0,0.0,0.0,context (not voltage)
+context_pulse_direction,context_metadata,0.0,0.0,0.0,context (not voltage)
+context_matching_dcir,context_metadata,0.0,0.0,0.0,context (not voltage)
+context_cumulative_cycles,context_metadata,0.0,0.0,0.0,context (not voltage)
+context_rpt_index,context_metadata,0.0,0.0,0.0,context (not voltage)
