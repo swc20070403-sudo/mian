@@ -1,0 +1,501 @@
+dataset,fold,rank,feature,train_spearman,level_class
+NMC,0,1,difference1_total_variation,-0.9280069100227666,offset-invariant
+NMC,0,2,difference2_range,-0.9126714329994268,offset-invariant
+NMC,0,3,difference2_rms,-0.8982700816794852,offset-invariant
+NMC,0,4,fft_amplitude_bin08,-0.8385828273888271,offset-invariant
+NMC,0,5,dwt_d1_energy_fraction,-0.8281737090107509,level-dependent normalisation
+NMC,0,6,segment1_p30_range,-0.7709646816880241,offset-invariant
+NMC,0,7,difference2_total_variation,-0.7507478903320082,offset-invariant
+NMC,0,8,segment2_p10_range,-0.7449079007585608,offset-invariant
+NMC,0,9,segment3_p60_range,-0.7405192989780778,offset-invariant
+NMC,0,10,global_iqr,-0.7368833440230225,offset-invariant
+NMC,0,11,difference1_min,0.6785179811061658,offset-invariant
+NMC,0,12,difference1_kurtosis_excess,0.6540796917246807,offset-invariant
+NMC,0,13,difference2_min,0.6517407067233736,offset-invariant
+NMC,0,14,global_mad,-0.6459478032498469,offset-invariant
+NMC,0,15,difference1_max,-0.6458528459856815,offset-invariant
+NMC,0,16,fft_spectral_entropy,0.6410228666767563,offset-invariant
+NMC,0,17,difference2_hist_entropy,-0.6393897664346563,invariant (float bin-edge artefact only)
+NMC,0,18,segment1_p30_kurtosis_excess,-0.6296264880778045,offset-invariant
+NMC,0,19,difference2_max,-0.6282378270903461,offset-invariant
+NMC,0,20,segment2_p10_linear_r2,0.6182897963661242,offset-invariant
+NMC,0,21,transient_segment3_t50,0.6029820867764073,offset-invariant
+NMC,0,22,segment3_p60_kurtosis_excess,-0.5934384721066985,offset-invariant
+NMC,0,23,difference2_kurtosis_excess,-0.5628031577082216,offset-invariant
+NMC,0,24,segment2_p10_hist_entropy,0.5458116458504313,invariant (float bin-edge artefact only)
+NMC,0,25,fft_bandpower_fraction_b1,-0.5346321946750127,offset-invariant
+NMC,0,26,transient_segment3_t90,0.5290533246891664,offset-invariant
+NMC,0,27,nonlinear_autocorr_lag5,-0.4579148069159436,offset-invariant
+NMC,0,28,nonlinear_hjorth_complexity,-0.4037040999902889,offset-invariant
+NMC,0,29,difference1_hist_entropy,-0.4010963039252913,invariant (float bin-edge artefact only)
+NMC,0,30,nonlinear_autocorr_lag10,-0.3364964858211868,offset-invariant
+NMC,0,31,global_v_start,0.3035616385372928,absolute voltage level
+NMC,0,32,difference2_zero_crossings,0.2992433708182981,offset-invariant
+NMC,0,33,global_v_end,0.2925490559983517,absolute voltage level
+NMC,0,34,nonlinear_permutation_entropy,0.2746420759361813,offset-invariant
+NMC,0,35,fft_rolloff85,0.2707998344601472,offset-invariant
+NMC,0,36,global_min,0.2676397625885246,absolute voltage level
+NMC,0,37,global_mean,0.2435535508333431,absolute voltage level
+NMC,0,38,segment2_p10_min,0.2071354694257554,absolute voltage level
+NMC,0,39,nonlinear_approximate_entropy,-0.1898793221840014,offset-invariant
+NMC,0,40,global_max,0.1001387117128036,absolute voltage level
+NMC,0,41,fft_bandpower_fraction_b2,-0.0848669365959667,offset-invariant
+NMC,0,42,global_hist_entropy,-0.0590360319235648,invariant (float bin-edge artefact only)
+NMC,0,43,global_linear_r2,0.0562209226447783,offset-invariant
+NMC,0,44,transient_xjtu_late_change,0.0468271543589919,offset-invariant
+NMC,0,45,segment2_p10_linear_slope,-0.045870029373953,offset-invariant
+NMC,0,46,segment2_p10_skew,0.0428873511393493,offset-invariant
+NMC,0,47,segment3_p60_skew,-0.0363670615655428,offset-invariant
+NMC,0,48,difference1_skew,0.036176657356883,offset-invariant
+NMC,0,49,global_skew,0.0318729846381536,offset-invariant
+NMC,0,50,difference1_zero_crossings,0.025673607141761,offset-invariant
+NMC,1,1,difference1_total_variation,-0.9299772563151656,offset-invariant
+NMC,1,2,difference2_range,-0.913826769259699,offset-invariant
+NMC,1,3,difference2_rms,-0.9039642354774724,offset-invariant
+NMC,1,4,fft_amplitude_bin08,-0.841112468273505,offset-invariant
+NMC,1,5,dwt_d1_energy_fraction,-0.8276447220301762,level-dependent normalisation
+NMC,1,6,difference2_total_variation,-0.7792671340754811,offset-invariant
+NMC,1,7,segment1_p30_range,-0.7723686234612724,offset-invariant
+NMC,1,8,segment2_p10_range,-0.7452735642384655,offset-invariant
+NMC,1,9,segment3_p60_range,-0.7394945303657046,offset-invariant
+NMC,1,10,global_iqr,-0.7178626428870122,offset-invariant
+NMC,1,11,difference1_min,0.6869969045986898,offset-invariant
+NMC,1,12,difference2_min,0.6696894725657447,offset-invariant
+NMC,1,13,nonlinear_hurst_variogram,-0.6610309129437973,offset-invariant
+NMC,1,14,difference1_max,-0.655900008939143,offset-invariant
+NMC,1,15,difference2_max,-0.6537293609480187,offset-invariant
+NMC,1,16,difference1_kurtosis_excess,0.6389066365680148,offset-invariant
+NMC,1,17,global_mad,-0.638141476103716,offset-invariant
+NMC,1,18,fft_spectral_entropy,0.6309887438560174,offset-invariant
+NMC,1,19,difference2_hist_entropy,-0.621432059809406,invariant (float bin-edge artefact only)
+NMC,1,20,segment1_p30_kurtosis_excess,-0.5999046021878784,offset-invariant
+NMC,1,21,segment2_p10_kurtosis_excess,-0.5955853602110348,offset-invariant
+NMC,1,22,transient_segment3_t50,0.5833173552731946,offset-invariant
+NMC,1,23,segment3_p60_kurtosis_excess,-0.5758423618616552,offset-invariant
+NMC,1,24,difference2_kurtosis_excess,-0.54184637352127,offset-invariant
+NMC,1,25,fft_bandpower_fraction_b1,-0.5280438036414428,offset-invariant
+NMC,1,26,segment2_p10_hist_entropy,0.5068130068430385,invariant (float bin-edge artefact only)
+NMC,1,27,transient_segment3_t90,0.5067460836883418,offset-invariant
+NMC,1,28,nonlinear_autocorr_lag5,-0.4484182932102485,offset-invariant
+NMC,1,29,nonlinear_hjorth_complexity,-0.4270375659441456,offset-invariant
+NMC,1,30,difference1_hist_entropy,-0.3981691553355791,invariant (float bin-edge artefact only)
+NMC,1,31,nonlinear_autocorr_lag10,-0.3136075709714034,offset-invariant
+NMC,1,32,global_v_start,0.3057564699460973,absolute voltage level
+NMC,1,33,difference2_zero_crossings,0.2974304047948196,offset-invariant
+NMC,1,34,global_v_end,0.2950298874027888,absolute voltage level
+NMC,1,35,nonlinear_permutation_entropy,0.2828868534735878,offset-invariant
+NMC,1,36,fft_rolloff85,0.2750757992569984,offset-invariant
+NMC,1,37,global_min,0.2719399819657833,absolute voltage level
+NMC,1,38,global_mean,0.2435205602943086,absolute voltage level
+NMC,1,39,segment2_p10_min,0.2070674580249271,absolute voltage level
+NMC,1,40,nonlinear_approximate_entropy,-0.1312206913595489,offset-invariant
+NMC,1,41,global_max,0.100236188235816,absolute voltage level
+NMC,1,42,fft_bandpower_fraction_b2,-0.0897961380171302,offset-invariant
+NMC,1,43,global_linear_r2,0.0820223507537507,offset-invariant
+NMC,1,44,global_hist_entropy,-0.0640815508822848,invariant (float bin-edge artefact only)
+NMC,1,45,transient_xjtu_late_change,0.0537804250464053,offset-invariant
+NMC,1,46,global_kurtosis_excess,-0.0485295895651378,offset-invariant
+NMC,1,47,segment2_p10_linear_slope,-0.0445874993663326,offset-invariant
+NMC,1,48,global_skew,0.0417035022768493,offset-invariant
+NMC,1,49,segment2_p10_skew,0.0394959677972214,offset-invariant
+NMC,1,50,difference1_zero_crossings,0.0347860046742117,offset-invariant
+NMC,2,1,difference1_total_variation,-0.927602229168313,offset-invariant
+NMC,2,2,difference2_range,-0.914847770749892,offset-invariant
+NMC,2,3,difference2_rms,-0.8984195602553584,offset-invariant
+NMC,2,4,fft_amplitude_bin08,-0.8306633433767336,offset-invariant
+NMC,2,5,dwt_d1_energy_fraction,-0.8275258823049924,level-dependent normalisation
+NMC,2,6,segment1_p30_range,-0.762680581691357,offset-invariant
+NMC,2,7,difference2_total_variation,-0.752643702766901,offset-invariant
+NMC,2,8,segment2_p10_range,-0.732073824823004,offset-invariant
+NMC,2,9,segment3_p60_range,-0.7267352823685821,offset-invariant
+NMC,2,10,global_iqr,-0.7101817894317655,offset-invariant
+NMC,2,11,difference1_min,0.6845974616163358,offset-invariant
+NMC,2,12,difference2_min,0.6611588364585163,offset-invariant
+NMC,2,13,difference1_max,-0.6510708190943304,offset-invariant
+NMC,2,14,fft_spectral_spread,0.6469040353501526,offset-invariant
+NMC,2,15,difference2_max,-0.636731131288486,offset-invariant
+NMC,2,16,global_mad,-0.6292780150133033,offset-invariant
+NMC,2,17,fft_spectral_entropy,0.6186397450128116,offset-invariant
+NMC,2,18,difference2_hist_entropy,-0.6048641173913363,invariant (float bin-edge artefact only)
+NMC,2,19,segment1_p30_kurtosis_excess,-0.5793721894566622,offset-invariant
+NMC,2,20,segment2_p10_linear_r2,0.5698360654687394,offset-invariant
+NMC,2,21,transient_segment3_t50,0.5655567658567465,offset-invariant
+NMC,2,22,segment3_p60_kurtosis_excess,-0.562166691907917,offset-invariant
+NMC,2,23,difference2_kurtosis_excess,-0.539061199931825,offset-invariant
+NMC,2,24,fft_bandpower_fraction_b3,0.5208016553045494,offset-invariant
+NMC,2,25,transient_segment3_t90,0.5030774458524657,offset-invariant
+NMC,2,26,segment2_p10_hist_entropy,0.4982122171244884,invariant (float bin-edge artefact only)
+NMC,2,27,nonlinear_autocorr_lag5,-0.4440575997125806,offset-invariant
+NMC,2,28,nonlinear_hjorth_complexity,-0.3964374980969899,offset-invariant
+NMC,2,29,difference1_hist_entropy,-0.3949711125767238,invariant (float bin-edge artefact only)
+NMC,2,30,difference2_zero_crossings,0.3150369096452437,offset-invariant
+NMC,2,31,nonlinear_autocorr_lag10,-0.3122411135140049,offset-invariant
+NMC,2,32,global_v_start,0.3008493175574099,absolute voltage level
+NMC,2,33,global_v_end,0.2906270216027981,absolute voltage level
+NMC,2,34,nonlinear_permutation_entropy,0.2758648508645565,offset-invariant
+NMC,2,35,global_min,0.2691164563448021,absolute voltage level
+NMC,2,36,fft_rolloff85,0.2690450413011634,offset-invariant
+NMC,2,37,global_mean,0.2418551579239799,absolute voltage level
+NMC,2,38,segment2_p10_min,0.2063198807846526,absolute voltage level
+NMC,2,39,nonlinear_approximate_entropy,-0.1632697778286694,offset-invariant
+NMC,2,40,global_max,0.0984706722720828,absolute voltage level
+NMC,2,41,fft_bandpower_fraction_b2,-0.0876792865945156,offset-invariant
+NMC,2,42,global_linear_r2,0.0781131303419733,offset-invariant
+NMC,2,43,global_hist_entropy,-0.0518767318625718,invariant (float bin-edge artefact only)
+NMC,2,44,transient_xjtu_late_change,0.0482671564179265,offset-invariant
+NMC,2,45,segment2_p10_linear_slope,-0.0452906649175283,offset-invariant
+NMC,2,46,difference1_zero_crossings,0.0419424830389963,offset-invariant
+NMC,2,47,segment2_p10_skew,0.0406177404750791,offset-invariant
+NMC,2,48,global_kurtosis_excess,-0.038473667125022,offset-invariant
+NMC,2,49,difference1_skew,0.0329082281031514,offset-invariant
+NMC,2,50,segment3_p60_skew,-0.0324498409750517,offset-invariant
+NMC,3,1,difference1_total_variation,-0.9251802481090916,offset-invariant
+NMC,3,2,difference2_range,-0.9127524887088964,offset-invariant
+NMC,3,3,difference2_rms,-0.8996769751520958,offset-invariant
+NMC,3,4,fft_amplitude_bin08,-0.8303677885453812,offset-invariant
+NMC,3,5,dwt_d1_energy_fraction,-0.8233740254761012,level-dependent normalisation
+NMC,3,6,difference2_total_variation,-0.7845154096728495,offset-invariant
+NMC,3,7,segment1_p30_range,-0.759025747743753,offset-invariant
+NMC,3,8,segment2_p10_range,-0.7320217221160391,offset-invariant
+NMC,3,9,segment3_p60_range,-0.7225468975796336,offset-invariant
+NMC,3,10,difference1_min,0.6958695462342208,offset-invariant
+NMC,3,11,global_iqr,-0.6954777133255191,offset-invariant
+NMC,3,12,difference2_min,0.6861923883746868,offset-invariant
+NMC,3,13,difference2_max,-0.6674934140239768,offset-invariant
+NMC,3,14,difference1_max,-0.6661217903271756,offset-invariant
+NMC,3,15,nonlinear_hurst_variogram,-0.6379666590955339,offset-invariant
+NMC,3,16,global_mad,-0.626469113846303,offset-invariant
+NMC,3,17,difference1_kurtosis_excess,0.6097913668689644,offset-invariant
+NMC,3,18,fft_spectral_entropy,0.6062557691063097,offset-invariant
+NMC,3,19,difference2_hist_entropy,-0.5863417719796986,invariant (float bin-edge artefact only)
+NMC,3,20,segment2_p10_kurtosis_excess,-0.5633405252379013,offset-invariant
+NMC,3,21,segment1_p30_kurtosis_excess,-0.5584322136314901,offset-invariant
+NMC,3,22,transient_segment3_t50,0.5547440235180205,offset-invariant
+NMC,3,23,segment3_p60_kurtosis_excess,-0.5494751151371859,offset-invariant
+NMC,3,24,difference2_kurtosis_excess,-0.5171313173267749,offset-invariant
+NMC,3,25,fft_bandpower_fraction_b3,0.5079376517240187,offset-invariant
+NMC,3,26,transient_segment3_t90,0.481463818610166,offset-invariant
+NMC,3,27,segment2_p10_hist_entropy,0.4776795724627297,invariant (float bin-edge artefact only)
+NMC,3,28,nonlinear_hjorth_complexity,-0.4342234071350275,offset-invariant
+NMC,3,29,nonlinear_autocorr_lag5,-0.4304626033880664,offset-invariant
+NMC,3,30,difference1_hist_entropy,-0.3556480272290082,invariant (float bin-edge artefact only)
+NMC,3,31,difference2_zero_crossings,0.3011318818103033,offset-invariant
+NMC,3,32,global_v_start,0.297688668156623,absolute voltage level
+NMC,3,33,nonlinear_autocorr_lag10,-0.2950262965991703,offset-invariant
+NMC,3,34,global_v_end,0.2878466158560699,absolute voltage level
+NMC,3,35,nonlinear_permutation_entropy,0.2814974179885403,offset-invariant
+NMC,3,36,global_min,0.2748748730761071,absolute voltage level
+NMC,3,37,fft_rolloff85,0.2560211084699986,offset-invariant
+NMC,3,38,global_mean,0.2384434724169782,absolute voltage level
+NMC,3,39,segment2_p10_min,0.202633292735461,absolute voltage level
+NMC,3,40,nonlinear_approximate_entropy,-0.1064799240945704,offset-invariant
+NMC,3,41,global_linear_r2,0.1016748137147964,offset-invariant
+NMC,3,42,global_max,0.0954172722634662,absolute voltage level
+NMC,3,43,fft_bandpower_fraction_b2,-0.0794812451779697,offset-invariant
+NMC,3,44,global_hist_entropy,-0.0768414494589457,invariant (float bin-edge artefact only)
+NMC,3,45,global_kurtosis_excess,-0.059242985705887,offset-invariant
+NMC,3,46,transient_xjtu_late_change,0.0494199764504504,offset-invariant
+NMC,3,47,segment2_p10_linear_slope,-0.0458161719329476,offset-invariant
+NMC,3,48,difference1_zero_crossings,0.0433701202231211,offset-invariant
+NMC,3,49,segment2_p10_skew,0.0383200360477698,offset-invariant
+NMC,3,50,global_skew,0.0380058360981098,offset-invariant
+NMC,4,1,difference1_total_variation,-0.9273127366492796,offset-invariant
+NMC,4,2,difference2_range,-0.9132714609513428,offset-invariant
+NMC,4,3,difference2_rms,-0.9025391125343498,offset-invariant
+NMC,4,4,fft_amplitude_bin08,-0.8343281077638289,offset-invariant
+NMC,4,5,dwt_d1_energy_fraction,-0.8292586440810111,level-dependent normalisation
+NMC,4,6,segment1_p30_range,-0.7698334455079744,offset-invariant
+NMC,4,7,difference2_total_variation,-0.7689422726751014,offset-invariant
+NMC,4,8,segment2_p10_range,-0.7366920396425558,offset-invariant
+NMC,4,9,segment3_p60_range,-0.7329467593068917,offset-invariant
+NMC,4,10,global_iqr,-0.7145565388666266,offset-invariant
+NMC,4,11,difference1_min,0.6886216740472151,offset-invariant
+NMC,4,12,difference2_min,0.6664310769838734,offset-invariant
+NMC,4,13,difference1_max,-0.6567077102452118,offset-invariant
+NMC,4,14,fft_spectral_spread,0.6526662542885087,offset-invariant
+NMC,4,15,difference2_max,-0.6449932637615289,offset-invariant
+NMC,4,16,global_mad,-0.6364506666190146,offset-invariant
+NMC,4,17,fft_spectral_entropy,0.6244765516296058,offset-invariant
+NMC,4,18,difference2_hist_entropy,-0.6009985222946725,invariant (float bin-edge artefact only)
+NMC,4,19,segment1_p30_kurtosis_excess,-0.586335969129492,offset-invariant
+NMC,4,20,segment2_p10_linear_r2,0.5705279549088971,offset-invariant
+NMC,4,21,transient_segment3_t50,0.5671501643561986,offset-invariant
+NMC,4,22,segment3_p60_kurtosis_excess,-0.5642210489092808,offset-invariant
+NMC,4,23,difference2_kurtosis_excess,-0.537889072559864,offset-invariant
+NMC,4,24,fft_bandpower_fraction_b1,-0.5258944722113492,offset-invariant
+NMC,4,25,transient_segment3_t90,0.5038767298537671,offset-invariant
+NMC,4,26,segment2_p10_hist_entropy,0.49999926706211,invariant (float bin-edge artefact only)
+NMC,4,27,nonlinear_autocorr_lag5,-0.448968764081373,offset-invariant
+NMC,4,28,nonlinear_hjorth_complexity,-0.4089312457955593,offset-invariant
+NMC,4,29,difference1_hist_entropy,-0.3807773364673767,invariant (float bin-edge artefact only)
+NMC,4,30,nonlinear_autocorr_lag10,-0.3175305930768646,offset-invariant
+NMC,4,31,difference2_zero_crossings,0.305012149926264,offset-invariant
+NMC,4,32,global_v_start,0.3027455139797772,absolute voltage level
+NMC,4,33,global_v_end,0.2930809364370655,absolute voltage level
+NMC,4,34,nonlinear_permutation_entropy,0.2804701358343303,offset-invariant
+NMC,4,35,fft_rolloff85,0.2781790228435383,offset-invariant
+NMC,4,36,global_min,0.2729546078248546,absolute voltage level
+NMC,4,37,global_mean,0.2443050773622649,absolute voltage level
+NMC,4,38,segment2_p10_min,0.2070983180870577,absolute voltage level
+NMC,4,39,nonlinear_approximate_entropy,-0.1571905530792131,offset-invariant
+NMC,4,40,global_max,0.0992481212069892,absolute voltage level
+NMC,4,41,global_linear_r2,0.0835049393599672,offset-invariant
+NMC,4,42,fft_bandpower_fraction_b2,-0.0801515538026193,offset-invariant
+NMC,4,43,global_hist_entropy,-0.0566924361195718,invariant (float bin-edge artefact only)
+NMC,4,44,transient_xjtu_late_change,0.050752666389406,offset-invariant
+NMC,4,45,difference1_zero_crossings,0.0472561329134268,offset-invariant
+NMC,4,46,segment2_p10_linear_slope,-0.0446804692280899,offset-invariant
+NMC,4,47,segment2_p10_skew,0.0425729761669589,offset-invariant
+NMC,4,48,global_kurtosis_excess,-0.0424222069682756,offset-invariant
+NMC,4,49,global_skew,0.032850754912668,offset-invariant
+NMC,4,50,difference1_skew,0.0325028605718153,offset-invariant
+LFP,0,1,global_range,-0.5792071965299465,offset-invariant
+LFP,0,2,fft_amplitude_bin05,-0.5721835370802433,offset-invariant
+LFP,0,3,fft_amplitude_bin06,-0.5690295364649437,offset-invariant
+LFP,0,4,fft_amplitude_bin04,-0.5546123795386431,offset-invariant
+LFP,0,5,fft_amplitude_bin07,-0.5533326288843957,offset-invariant
+LFP,0,6,fft_amplitude_bin03,-0.5415799194294647,offset-invariant
+LFP,0,7,fft_amplitude_bin08,-0.535926359303182,offset-invariant
+LFP,0,8,dwt_a4_energy_fraction,0.5311479355156599,level-dependent normalisation
+LFP,0,9,dwt_d4_energy_fraction,-0.5114936567053753,level-dependent normalisation
+LFP,0,10,global_std,-0.4956084763113031,offset-invariant
+LFP,0,11,dwt_d3_energy_fraction,-0.4889240690541397,level-dependent normalisation
+LFP,0,12,difference1_rms,-0.4832757970930993,offset-invariant
+LFP,0,13,context_matching_dcir,-0.4658919405047989,context (not voltage)
+LFP,0,14,dwt_d2_energy_fraction,-0.446914789334884,level-dependent normalisation
+LFP,0,15,dwt_d1_energy_fraction,-0.4248390026474897,level-dependent normalisation
+LFP,0,16,fft_amplitude_bin02,-0.424808421640786,offset-invariant
+LFP,0,17,difference1_range,-0.4219247808769441,offset-invariant
+LFP,0,18,difference1_total_variation,-0.3817885119041533,offset-invariant
+LFP,0,19,difference2_range,-0.3814981870607785,offset-invariant
+LFP,0,20,segment2_p10_range,-0.3536607963625447,offset-invariant
+LFP,0,21,fft_amplitude_bin01,-0.341169869840518,offset-invariant
+LFP,0,22,difference2_rms,-0.3358375333755171,offset-invariant
+LFP,0,23,segment1_p30_range,-0.3145100789328061,offset-invariant
+LFP,0,24,segment1_p30_std,-0.2729878981776227,offset-invariant
+LFP,0,25,difference2_total_variation,-0.2705822892201253,offset-invariant
+LFP,0,26,difference1_min,0.2258704417392671,offset-invariant
+LFP,0,27,segment3_p60_range,-0.2233872869792791,offset-invariant
+LFP,0,28,global_hist_entropy,-0.2100239190417248,invariant (float bin-edge artefact only)
+LFP,0,29,difference1_max,-0.2095502040518019,offset-invariant
+LFP,0,30,transient_segment3_t10,0.1994975561406338,offset-invariant
+LFP,0,31,global_iqr,-0.1944953200590874,offset-invariant
+LFP,0,32,difference2_max,-0.1903706589864787,offset-invariant
+LFP,0,33,difference2_min,0.1823992348963869,offset-invariant
+LFP,0,34,nonlinear_hurst_variogram,-0.1711947219197975,offset-invariant
+LFP,0,35,difference2_kurtosis_excess,-0.1684216637713713,offset-invariant
+LFP,0,36,difference1_kurtosis_excess,0.1558045302952343,offset-invariant
+LFP,0,37,global_linear_r2,0.154818501640097,offset-invariant
+LFP,0,38,fft_spectral_spread,0.1437488353963184,offset-invariant
+LFP,0,39,transient_segment3_t50,0.1426952371216619,offset-invariant
+LFP,0,40,segment2_p10_kurtosis_excess,-0.1425891930350452,offset-invariant
+LFP,0,41,difference2_hist_entropy,-0.1298162114436197,invariant (float bin-edge artefact only)
+LFP,0,42,segment2_p10_linear_r2,0.1112301867871576,offset-invariant
+LFP,0,43,segment3_p60_kurtosis_excess,-0.1103867776338231,offset-invariant
+LFP,0,44,segment1_p30_hist_entropy,-0.1076774168189186,invariant (float bin-edge artefact only)
+LFP,0,45,fft_flatness,0.1003456118770671,offset-invariant
+LFP,0,46,global_min,0.0935547055872654,absolute voltage level
+LFP,0,47,fft_bandpower_fraction_b2,-0.0933529077738482,offset-invariant
+LFP,0,48,difference1_hist_entropy,-0.0927789467203966,invariant (float bin-edge artefact only)
+LFP,0,49,global_mad,-0.0878023873688902,offset-invariant
+LFP,0,50,segment1_p30_linear_intercept,0.0856983789751874,absolute voltage level
+LFP,1,1,fft_amplitude_bin06,-0.604012659283691,offset-invariant
+LFP,1,2,fft_amplitude_bin05,-0.5992595847477897,offset-invariant
+LFP,1,3,global_range,-0.593774015289681,offset-invariant
+LFP,1,4,fft_amplitude_bin07,-0.5838705805644849,offset-invariant
+LFP,1,5,fft_amplitude_bin04,-0.5816577908793542,offset-invariant
+LFP,1,6,fft_amplitude_bin03,-0.5700633328444247,offset-invariant
+LFP,1,7,dwt_a4_energy_fraction,0.5608236531387424,level-dependent normalisation
+LFP,1,8,fft_amplitude_bin08,-0.5584734030438595,offset-invariant
+LFP,1,9,difference1_rms,-0.5353002808864767,offset-invariant
+LFP,1,10,dwt_d4_energy_fraction,-0.5340566552760874,level-dependent normalisation
+LFP,1,11,dwt_d3_energy_fraction,-0.5259688776996931,level-dependent normalisation
+LFP,1,12,nonlinear_hjorth_activity,-0.5158730856710975,offset-invariant
+LFP,1,13,context_matching_dcir,-0.4857040919159056,context (not voltage)
+LFP,1,14,dwt_d2_energy_fraction,-0.484915138635178,level-dependent normalisation
+LFP,1,15,difference1_range,-0.4762125602372886,offset-invariant
+LFP,1,16,dwt_d1_energy_fraction,-0.4715973043125555,level-dependent normalisation
+LFP,1,17,fft_amplitude_bin02,-0.4493432633566198,offset-invariant
+LFP,1,18,difference2_range,-0.4360513509356511,offset-invariant
+LFP,1,19,difference1_total_variation,-0.4254169162616822,offset-invariant
+LFP,1,20,difference2_rms,-0.393353445536225,offset-invariant
+LFP,1,21,fft_dominant_amplitude,-0.3595871670505985,offset-invariant
+LFP,1,22,segment2_p10_range,-0.3590176628521573,offset-invariant
+LFP,1,23,difference2_total_variation,-0.3207536569117669,offset-invariant
+LFP,1,24,segment1_p30_range,-0.3198175207635819,offset-invariant
+LFP,1,25,segment1_p30_std,-0.2803187838805764,offset-invariant
+LFP,1,26,difference1_min,0.2495036434431449,offset-invariant
+LFP,1,27,difference1_max,-0.2359765168440582,offset-invariant
+LFP,1,28,segment3_p60_range,-0.2305555784794258,offset-invariant
+LFP,1,29,difference2_max,-0.2155034224027102,offset-invariant
+LFP,1,30,global_hist_entropy,-0.2128731032657813,invariant (float bin-edge artefact only)
+LFP,1,31,difference2_min,0.2071511465164102,offset-invariant
+LFP,1,32,global_iqr,-0.1999272306714823,offset-invariant
+LFP,1,33,transient_segment3_t10,0.192345983622457,offset-invariant
+LFP,1,34,difference2_kurtosis_excess,-0.1670092818071992,offset-invariant
+LFP,1,35,nonlinear_hurst_variogram,-0.1618966503083801,offset-invariant
+LFP,1,36,global_linear_r2,0.160371968459524,offset-invariant
+LFP,1,37,difference1_kurtosis_excess,0.1469589719799691,offset-invariant
+LFP,1,38,transient_segment3_t50,0.1418520559948494,offset-invariant
+LFP,1,39,segment2_p10_kurtosis_excess,-0.1344721566405223,offset-invariant
+LFP,1,40,fft_spectral_spread,0.1341900777155259,offset-invariant
+LFP,1,41,difference2_hist_entropy,-0.1231510195727215,invariant (float bin-edge artefact only)
+LFP,1,42,segment1_p30_hist_entropy,-0.1217905231150981,invariant (float bin-edge artefact only)
+LFP,1,43,segment3_p60_kurtosis_excess,-0.1153280172354936,offset-invariant
+LFP,1,44,global_min,0.0988924809097504,absolute voltage level
+LFP,1,45,segment2_p10_linear_r2,0.0966186018076816,offset-invariant
+LFP,1,46,global_mad,-0.0951115688077671,offset-invariant
+LFP,1,47,fft_flatness,0.093831887263018,offset-invariant
+LFP,1,48,difference1_hist_entropy,-0.0931272133055291,invariant (float bin-edge artefact only)
+LFP,1,49,segment1_p30_linear_intercept,0.0921758939283497,absolute voltage level
+LFP,1,50,fft_bandpower_fraction_b2,-0.0900042120482576,offset-invariant
+LFP,2,1,fft_amplitude_bin05,-0.5706918686150452,offset-invariant
+LFP,2,2,fft_amplitude_bin06,-0.5699077651879197,offset-invariant
+LFP,2,3,global_range,-0.569110938830077,offset-invariant
+LFP,2,4,fft_amplitude_bin04,-0.549442577048797,offset-invariant
+LFP,2,5,fft_amplitude_bin07,-0.5491768211075126,offset-invariant
+LFP,2,6,fft_amplitude_bin03,-0.5328251668072383,offset-invariant
+LFP,2,7,dwt_a4_energy_fraction,0.5294346722638472,level-dependent normalisation
+LFP,2,8,fft_amplitude_bin08,-0.5269893644368226,offset-invariant
+LFP,2,9,dwt_d4_energy_fraction,-0.5081904183305886,level-dependent normalisation
+LFP,2,10,nonlinear_hjorth_activity,-0.4932637838009741,offset-invariant
+LFP,2,11,dwt_d3_energy_fraction,-0.4919941294706382,level-dependent normalisation
+LFP,2,12,difference1_rms,-0.4861417682651882,offset-invariant
+LFP,2,13,context_matching_dcir,-0.4645135632961042,context (not voltage)
+LFP,2,14,dwt_d2_energy_fraction,-0.4480227414405466,level-dependent normalisation
+LFP,2,15,dwt_d1_energy_fraction,-0.4286138515668448,level-dependent normalisation
+LFP,2,16,difference1_range,-0.4270541757397658,offset-invariant
+LFP,2,17,fft_amplitude_bin02,-0.4246606607038549,offset-invariant
+LFP,2,18,difference2_range,-0.3946966977657062,offset-invariant
+LFP,2,19,difference1_total_variation,-0.3881668821282032,offset-invariant
+LFP,2,20,segment2_p10_range,-0.3488541590685072,offset-invariant
+LFP,2,21,difference2_rms,-0.348173281111406,offset-invariant
+LFP,2,22,fft_dominant_amplitude,-0.3423600892923691,offset-invariant
+LFP,2,23,segment1_p30_range,-0.303406047060511,offset-invariant
+LFP,2,24,difference2_total_variation,-0.2835821647518424,offset-invariant
+LFP,2,25,segment1_p30_std,-0.2662541386868806,offset-invariant
+LFP,2,26,difference1_min,0.2313469928147769,offset-invariant
+LFP,2,27,segment3_p60_range,-0.2197276179871737,offset-invariant
+LFP,2,28,global_hist_entropy,-0.2155534094022241,invariant (float bin-edge artefact only)
+LFP,2,29,difference1_max,-0.2139452573073911,offset-invariant
+LFP,2,30,difference2_max,-0.1951246793375084,offset-invariant
+LFP,2,31,global_iqr,-0.1939544461719599,offset-invariant
+LFP,2,32,difference2_min,0.1917409697341839,offset-invariant
+LFP,2,33,transient_segment3_t10,0.190761839871205,offset-invariant
+LFP,2,34,difference2_kurtosis_excess,-0.1740720920857774,offset-invariant
+LFP,2,35,global_linear_r2,0.1586536409507832,offset-invariant
+LFP,2,36,nonlinear_hurst_variogram,-0.1571346845521882,offset-invariant
+LFP,2,37,difference1_kurtosis_excess,0.1485340624624105,offset-invariant
+LFP,2,38,segment2_p10_kurtosis_excess,-0.1480191686285993,offset-invariant
+LFP,2,39,transient_segment3_t50,0.137568755766741,offset-invariant
+LFP,2,40,fft_spectral_spread,0.1318688202225139,offset-invariant
+LFP,2,41,difference2_hist_entropy,-0.1258817612451099,invariant (float bin-edge artefact only)
+LFP,2,42,segment3_p60_kurtosis_excess,-0.1082459883534522,offset-invariant
+LFP,2,43,segment2_p10_linear_r2,0.1072396795093058,offset-invariant
+LFP,2,44,fft_bandpower_fraction_b2,-0.1008800372288522,offset-invariant
+LFP,2,45,segment1_p30_hist_entropy,-0.096740435262153,invariant (float bin-edge artefact only)
+LFP,2,46,global_min,0.089858598343109,absolute voltage level
+LFP,2,47,difference1_hist_entropy,-0.0897654346535923,invariant (float bin-edge artefact only)
+LFP,2,48,fft_flatness,0.0897334355479064,offset-invariant
+LFP,2,49,global_mad,-0.0866084589568519,offset-invariant
+LFP,2,50,segment1_p30_linear_intercept,0.0823567981766253,absolute voltage level
+LFP,3,1,fft_amplitude_bin06,-0.586145378320984,offset-invariant
+LFP,3,2,fft_amplitude_bin05,-0.5815016750541941,offset-invariant
+LFP,3,3,global_range,-0.5805973476881263,offset-invariant
+LFP,3,4,fft_amplitude_bin07,-0.5675999992898284,offset-invariant
+LFP,3,5,fft_amplitude_bin04,-0.5664124735017783,offset-invariant
+LFP,3,6,fft_amplitude_bin03,-0.5562421090087147,offset-invariant
+LFP,3,7,fft_amplitude_bin08,-0.5461747404565551,offset-invariant
+LFP,3,8,dwt_a4_energy_fraction,0.5450772165412222,level-dependent normalisation
+LFP,3,9,dwt_d4_energy_fraction,-0.5216121842739084,level-dependent normalisation
+LFP,3,10,difference1_rms,-0.5128411570714602,offset-invariant
+LFP,3,11,dwt_d3_energy_fraction,-0.5083006996334106,level-dependent normalisation
+LFP,3,12,nonlinear_hjorth_activity,-0.5034105596584668,offset-invariant
+LFP,3,13,context_matching_dcir,-0.4740512655271613,context (not voltage)
+LFP,3,14,dwt_d2_energy_fraction,-0.4698290492440585,level-dependent normalisation
+LFP,3,15,difference1_range,-0.4521477696971669,offset-invariant
+LFP,3,16,dwt_d1_energy_fraction,-0.4509335872553746,level-dependent normalisation
+LFP,3,17,fft_amplitude_bin02,-0.4377005401895876,offset-invariant
+LFP,3,18,difference2_range,-0.4137463374683556,offset-invariant
+LFP,3,19,difference1_total_variation,-0.4084925764365725,offset-invariant
+LFP,3,20,difference2_rms,-0.3679677179174279,offset-invariant
+LFP,3,21,segment2_p10_range,-0.3538651540401475,offset-invariant
+LFP,3,22,fft_dominant_amplitude,-0.3502252112664943,offset-invariant
+LFP,3,23,segment1_p30_range,-0.3108379544822443,offset-invariant
+LFP,3,24,difference2_total_variation,-0.2992581643132249,offset-invariant
+LFP,3,25,segment1_p30_std,-0.2741495034320688,offset-invariant
+LFP,3,26,difference1_min,0.2385822620694313,offset-invariant
+LFP,3,27,difference1_max,-0.2245720134275205,offset-invariant
+LFP,3,28,segment3_p60_range,-0.221434546043577,offset-invariant
+LFP,3,29,global_hist_entropy,-0.2145422751455314,invariant (float bin-edge artefact only)
+LFP,3,30,difference2_max,-0.2041503762101112,offset-invariant
+LFP,3,31,transient_segment3_t10,0.2011555416790398,offset-invariant
+LFP,3,32,difference2_min,0.1983097065445798,offset-invariant
+LFP,3,33,global_iqr,-0.1937223847345245,offset-invariant
+LFP,3,34,difference2_kurtosis_excess,-0.1636812455395737,offset-invariant
+LFP,3,35,global_linear_r2,0.1622773916491895,offset-invariant
+LFP,3,36,nonlinear_hurst_variogram,-0.1606496759392876,offset-invariant
+LFP,3,37,difference1_kurtosis_excess,0.1539359635067239,offset-invariant
+LFP,3,38,transient_segment3_t50,0.1497637380535161,offset-invariant
+LFP,3,39,segment2_p10_kurtosis_excess,-0.145558059134131,offset-invariant
+LFP,3,40,fft_spectral_spread,0.1377161476818787,offset-invariant
+LFP,3,41,segment3_p60_kurtosis_excess,-0.1203536430945947,offset-invariant
+LFP,3,42,difference2_hist_entropy,-0.1150598927869591,invariant (float bin-edge artefact only)
+LFP,3,43,segment1_p30_hist_entropy,-0.1115145593530087,invariant (float bin-edge artefact only)
+LFP,3,44,segment2_p10_linear_r2,0.1088550848024435,offset-invariant
+LFP,3,45,fft_bandpower_fraction_b2,-0.0973307907029541,offset-invariant
+LFP,3,46,fft_flatness,0.0954136455906395,offset-invariant
+LFP,3,47,global_min,0.0928838788048533,absolute voltage level
+LFP,3,48,difference1_hist_entropy,-0.0908476975808849,invariant (float bin-edge artefact only)
+LFP,3,49,nonlinear_approximate_entropy,0.0906165160685299,offset-invariant
+LFP,3,50,global_mad,-0.0880781193337718,offset-invariant
+LFP,4,1,fft_amplitude_bin06,-0.5946875167047341,offset-invariant
+LFP,4,2,fft_amplitude_bin05,-0.5908350575032615,offset-invariant
+LFP,4,3,fft_amplitude_bin07,-0.5755134334041507,offset-invariant
+LFP,4,4,global_range,-0.574586062363101,offset-invariant
+LFP,4,5,fft_amplitude_bin04,-0.5682803403794751,offset-invariant
+LFP,4,6,fft_amplitude_bin03,-0.5512198377048829,offset-invariant
+LFP,4,7,fft_amplitude_bin08,-0.5512041826311322,offset-invariant
+LFP,4,8,dwt_a4_energy_fraction,0.5422320799965887,level-dependent normalisation
+LFP,4,9,dwt_d4_energy_fraction,-0.5155374643894292,level-dependent normalisation
+LFP,4,10,difference1_rms,-0.5138519762535797,offset-invariant
+LFP,4,11,dwt_d3_energy_fraction,-0.5089838499457955,level-dependent normalisation
+LFP,4,12,nonlinear_hjorth_activity,-0.5000943501342514,offset-invariant
+LFP,4,13,dwt_d2_energy_fraction,-0.4711970639262337,level-dependent normalisation
+LFP,4,14,context_matching_dcir,-0.4679257862970467,context (not voltage)
+LFP,4,15,difference1_range,-0.4518361544305684,offset-invariant
+LFP,4,16,dwt_d1_energy_fraction,-0.4489966040432702,level-dependent normalisation
+LFP,4,17,fft_amplitude_bin02,-0.4274232942414657,offset-invariant
+LFP,4,18,difference2_range,-0.407868758072601,offset-invariant
+LFP,4,19,difference1_total_variation,-0.4056766173259367,offset-invariant
+LFP,4,20,difference2_rms,-0.3587720746058939,offset-invariant
+LFP,4,21,segment2_p10_range,-0.3479537468031664,offset-invariant
+LFP,4,22,fft_amplitude_bin01,-0.3385720970027851,offset-invariant
+LFP,4,23,segment1_p30_range,-0.2986475819547626,offset-invariant
+LFP,4,24,difference2_total_variation,-0.2826990177510128,offset-invariant
+LFP,4,25,segment1_p30_std,-0.2594095127234864,offset-invariant
+LFP,4,26,difference1_min,0.2322411525248037,offset-invariant
+LFP,4,27,transient_segment3_t10,0.2208882647627597,offset-invariant
+LFP,4,28,difference1_max,-0.2168521184236911,offset-invariant
+LFP,4,29,segment3_p60_range,-0.2157915410871364,offset-invariant
+LFP,4,30,global_hist_entropy,-0.205236639379996,invariant (float bin-edge artefact only)
+LFP,4,31,difference2_max,-0.2001528797476514,offset-invariant
+LFP,4,32,difference2_min,0.1900773737792197,offset-invariant
+LFP,4,33,global_iqr,-0.1854160133350305,offset-invariant
+LFP,4,34,difference2_kurtosis_excess,-0.1794485768739157,offset-invariant
+LFP,4,35,segment2_p10_kurtosis_excess,-0.1670614909655347,offset-invariant
+LFP,4,36,nonlinear_hurst_variogram,-0.1616376030978624,offset-invariant
+LFP,4,37,global_linear_r2,0.1559676926529882,offset-invariant
+LFP,4,38,difference1_kurtosis_excess,0.1558139347548771,offset-invariant
+LFP,4,39,transient_segment3_t50,0.1473626258110099,offset-invariant
+LFP,4,40,fft_spectral_spread,0.142679065092221,offset-invariant
+LFP,4,41,difference2_hist_entropy,-0.1355304606997668,invariant (float bin-edge artefact only)
+LFP,4,42,segment2_p10_linear_r2,0.1181555482251725,offset-invariant
+LFP,4,43,segment3_p60_kurtosis_excess,-0.1153232575529164,offset-invariant
+LFP,4,44,fft_bandpower_fraction_b4,0.1091579178338883,offset-invariant
+LFP,4,45,fft_bandpower_fraction_b2,-0.1013732986852505,offset-invariant
+LFP,4,46,segment1_p30_hist_entropy,-0.1007820563428842,invariant (float bin-edge artefact only)
+LFP,4,47,difference1_hist_entropy,-0.0969442545284794,invariant (float bin-edge artefact only)
+LFP,4,48,fft_flatness,0.0946919893052351,offset-invariant
+LFP,4,49,global_min,0.0898251169556462,absolute voltage level
+LFP,4,50,global_mad,-0.0860062290791003,offset-invariant

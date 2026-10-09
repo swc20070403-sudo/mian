@@ -1,0 +1,24 @@
+[
+ {
+  "model": "R0",
+  "parameter_count": 19041,
+  "flops_per_pulse": 424864,
+  "latency_ms_median": 0.30365,
+  "latency_ms_p05": 0.2935,
+  "latency_ms_p95": 0.511145,
+  "reps": 1000,
+  "threads": 1,
+  "torch": "2.11.0+cu130"
+ },
+ {
+  "model": "A2",
+  "parameter_count": 7265,
+  "flops_per_pulse": 13728,
+  "latency_ms_median": 0.07195,
+  "latency_ms_p05": 0.0678,
+  "latency_ms_p95": 0.158505,
+  "reps": 1000,
+  "threads": 1,
+  "torch": "2.11.0+cu130"
+ }
+]

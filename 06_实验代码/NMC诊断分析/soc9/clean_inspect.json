@@ -1,0 +1,117 @@
+{
+ "10_chg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "10_dchg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "20_chg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "20_dchg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "30_chg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "30_dchg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "40_chg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "40_dchg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "50_chg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "50_dchg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "60_chg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "60_dchg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "70_chg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "70_dchg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "80_chg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "80_dchg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "90_chg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "90_dchg": {
+  "n": 1336,
+  "passed": 1336,
+  "fails": {}
+ },
+ "3soc": {
+  "cell_rpt": 1336,
+  "records": 8016,
+  "cells": 44
+ },
+ "9soc": {
+  "cell_rpt": 1336,
+  "records": 24048,
+  "cells": 44
+ },
+ "8soc_no10": {
+  "cell_rpt": 1336,
+  "records": 21376,
+  "cells": 44
+ },
+ "8soc_no90": {
+  "cell_rpt": 1336,
+  "records": 21376,
+  "cells": 44
+ },
+ "7soc_20_80": {
+  "cell_rpt": 1336,
+  "records": 18704,
+  "cells": 44
+ }
+}
