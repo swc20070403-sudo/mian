@@ -6,7 +6,7 @@
 - 英文稿按投稿模板排版：A4、双倍行距、行号；摘要分为 Background / Method / Significant findings。
 - 中文版与英文稿内容一致。
 - 全文只与神经网络比较，树模型等传统回归器的对照已删除。
-- 引言采用以老师版本为底的融合稿。
+- 引言采用以老师版本为底的融合稿；全文统一用“主分支 / 补充分支”（primary / supplementary branch）。
 
 ## 目录
 
@@ -52,4 +52,3 @@ python ../压缩Word图片.py 中文版正文.docx
    - 重画补充图 S3，去掉 GBDT 曲线。
 2. **作者信息**：作者、单位、通讯地址、电话、邮箱、基金信息、CRediT（文中方括号处）。
 3. **图 2 高分辨率原图**：现为 2000 px 宽，投稿前替换。
-4. **用词统一（待确认）**：引言用 primary / supplementary branch（主分支 / 补充分支），正文其余部分用 backbone / complement（主干 / 补充），是否全文统一。

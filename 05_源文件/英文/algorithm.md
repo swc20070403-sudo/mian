@@ -1,4 +1,4 @@
-**Algorithm S1.** Training and inference of the dual-branch SOH estimation model (handcrafted backbone + pulse-waveform complement).
+**Algorithm S1.** Training and inference of the dual-branch SOH estimation model (handcrafted primary branch + supplementary pulse-waveform branch).
 
 **Input:** cleaned record set *D* = {(*V*, *x*, *y*, cell, rpt, soc, pulse)} with 16,938 records of 64 cells; *F* = 5 folds, split seed 42, initialisation seeds {0, 1, 2}; *K* = 50, redundancy threshold 0.98, *λ* = 0.1.
 
