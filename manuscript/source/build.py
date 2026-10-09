@@ -30,6 +30,8 @@ TXT = {'abstract': '摘要' if ZH else 'Abstract', 'keywords': '关键词' if ZH
        'supp_heads': ('补充表', '补充图', '补充算法S1') if ZH else ('Supplementary Tables', 'Supplementary Figures', 'Supplementary Algorithm S1')}
 if LAYOUT == 'A' and ZH:  # Chinese reading copy
     BODY_PT, LINE, INDENT, PAR_AFTER, MARG = 11, 1.35, 0.78, 0, 2.3
+elif LAYOUT == 'T':      # template layout: A4, 12 pt, double spacing, line numbers
+    BODY_PT, LINE, INDENT, PAR_AFTER, MARG = 12, 2.0, 0.85, 0, 3.17
 elif LAYOUT == 'A':      # journal-like single column
     BODY_PT, LINE, INDENT, PAR_AFTER, MARG = 11, 1.2, 0.6, 0, 2.3
 else:                   # submission style
@@ -48,7 +50,8 @@ def preprocess(md):
             outl.append(ln); continue
         tag, txt = m.group(1), m.group(2)
         style = {'TITLE': 'Title', 'AUTHORS': 'Author', 'AFFIL': 'Affiliation', 'HEAD': 'Front Heading',
-                 'HL': 'Highlight', 'ABS': 'Abstract', 'KEY': 'Keywords', 'TOC': 'Contents Entry'}.get(tag)
+                 'HL': 'Highlight', 'ABS': 'Abstract', 'KEY': 'Keywords', 'TOC': 'Contents Entry',
+                 'FRONT': 'Front Text', 'ABSHEAD': 'Abstract Heading', 'SUBHEAD': 'Abstract Subheading'}.get(tag)
         if tag == 'REFS':
             refs = open(os.path.join(HERE, 'references.md')).read().strip().split('\n\n')
             for r in refs:
@@ -138,9 +141,20 @@ s = get_style('Highlight'); set_font(s.font, BODY_PT - 0.5, False, False, '00000
 s.paragraph_format.left_indent = Cm(0.5); s.paragraph_format.first_line_indent = Cm(-0.4)
 s = get_style('Abstract'); set_font(s.font, BODY_PT - 0.5, False, False, '000000'); set_east_asia(s); para_fmt(s, J, 0, 4, LINE * 0.97, 0)
 s = get_style('Keywords'); set_font(s.font, BODY_PT - 0.5, False, False, '000000'); set_east_asia(s); para_fmt(s, J, 2, 6, 1.15, 0)
+s = get_style('Front Text'); set_font(s.font, BODY_PT, False, False, '000000'); set_east_asia(s); para_fmt(s, L, 0, 0, LINE, 0)
+s = get_style('Abstract Heading'); set_font(s.font, BODY_PT, True, False, '000000'); set_east_asia(s); para_fmt(s, L, 0, 0, LINE, 0, keep_next=True)
+s = get_style('Abstract Subheading'); set_font(s.font, BODY_PT, True, False, '000000'); set_east_asia(s); para_fmt(s, L, 0, 0, LINE, 0, keep_next=True)
+if LAYOUT == 'T':
+    for nm in ['Abstract', 'Keywords']:
+        s = get_style(nm); set_font(s.font, BODY_PT, False, False, '000000'); para_fmt(s, J, 0, 0, LINE, INDENT if nm == 'Abstract' else 0)
+    s = get_style('Title'); set_font(s.font, 14, True, False, '000000'); para_fmt(s, C, 0, 12, 1.5, 0)
+    s = get_style('Author'); set_font(s.font, 12, False, False, '000000'); para_fmt(s, C, 0, 6, 1.5, 0)
+    s = get_style('Affiliation'); set_font(s.font, 12, False, False, '000000'); para_fmt(s, C, 0, 6, 1.5, 0)
+    s = get_style('Front Heading'); set_font(s.font, 12, True, False, '000000'); para_fmt(s, L, 12, 0, LINE, 0, keep_next=True)
 s = get_style('Contents Entry'); set_font(s.font, BODY_PT, False, False, '000000'); set_east_asia(s); para_fmt(s, L, 0, 2, 1.15, 0)
 for nm, sz, b, it, bf, af in [('Heading 1', 12, True, False, 14, 6), ('Heading 2', 11, True, False, 10, 4),
-                               ('Heading 3', 11, False, True, 8, 3)]:
+                               ('Heading 3', 11, False, True, 8, 3)] if LAYOUT != 'T' else \
+        [('Heading 1', 12, True, False, 12, 0), ('Heading 2', 12, True, False, 6, 0), ('Heading 3', 12, False, True, 6, 0)]:
     if ZH and nm == 'Heading 3':
         b, it = False, False
     s = get_style(nm); set_font(s.font, sz, b, it, '000000'); set_east_asia(s, FONT_EA_HEAD)
@@ -153,6 +167,12 @@ s = get_style('Table Note'); set_font(s.font, 8.5, False, False, '000000'); set_
 s = get_style('Table Text'); set_font(s.font, 8.5, False, False, '000000'); set_east_asia(s); para_fmt(s, L, 1, 1, 1.0, 0)
 s = get_style('Reference'); set_font(s.font, 9, False, False, '000000'); set_east_asia(s); para_fmt(s, J, 0, 2, 1.1, hanging=0.75)
 s = get_style('Equation'); para_fmt(s, L, 4, 4, 1.0, 0)
+if LAYOUT == 'T':
+    s = get_style('Image Caption'); set_font(s.font, 11, False, False, '000000'); para_fmt(s, J, 3, 10, 1.5, 0)
+    s = get_style('Table Caption'); set_font(s.font, 11, False, False, '000000'); para_fmt(s, L, 10, 3, 1.5, 0, keep_next=True)
+    s = get_style('Table Text'); set_font(s.font, 10, False, False, '000000'); para_fmt(s, L, 1, 1, 1.0, 0)
+    s = get_style('Table Note'); set_font(s.font, 10, False, False, '000000'); para_fmt(s, J, 2, 8, 1.2, 0)
+    s = get_style('Reference'); set_font(s.font, 12, False, False, '000000'); para_fmt(s, L, 0, 0, 1.5, hanging=0.75)
 s = get_style('Algorithm'); set_font(s.font, 9.5, False, False, '000000'); set_east_asia(s); para_fmt(s, L, 0, 1, 1.1, 0)
 s.paragraph_format.left_indent = Cm(0.3)
 
@@ -160,7 +180,10 @@ s.paragraph_format.left_indent = Cm(0.3)
 for sec in doc.sections:
     sec.page_width, sec.page_height = Cm(PAGE_W), Cm(PAGE_H)
     sec.left_margin = sec.right_margin = Cm(MARG)
-    sec.top_margin = Cm(2.4); sec.bottom_margin = Cm(2.2)
+    sec.top_margin = Cm(2.54 if LAYOUT == 'T' else 2.4); sec.bottom_margin = Cm(2.54 if LAYOUT == 'T' else 2.2)
+    if LAYOUT == 'T':
+        ln = OxmlElement('w:lnNumType'); ln.set(qn('w:countBy'), '1'); ln.set(qn('w:restart'), 'continuous')
+        sec._sectPr.append(ln)
     sec.header_distance = Cm(1.2); sec.footer_distance = Cm(1.1); sec.gutter = Cm(0)
     # page number
     fp = sec.footer.paragraphs[0]; fp.alignment = C
@@ -368,7 +391,9 @@ def page_break_before(p):
 
 for p in body.iter(qn('w:p')):
     t = ptext(p).strip()
-    if not SUPP and t == TXT['nomenclature']:
+    if not SUPP and t == TXT['nomenclature'] and LAYOUT != 'T':
+        page_break_before(p)
+    if not SUPP and LAYOUT == 'T' and t == 'Abstract:':
         page_break_before(p)
     if SUPP and t.startswith(TXT['note1']) and p.find(qn('w:pPr')) is not None and \
             p.find(qn('w:pPr')).find(qn('w:pStyle')) is not None and \
